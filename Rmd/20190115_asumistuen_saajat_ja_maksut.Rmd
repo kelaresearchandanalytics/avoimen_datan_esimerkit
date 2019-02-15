@@ -7,6 +7,17 @@ output:
     variant: markdown_github
 ---
 
+```{r, include = FALSE, eval = FALSE}
+rmarkdown::render(input = "20190115_asumistuen_saajat_ja_maksut.Rmd", 
+                  output_file = "../esimerkit/20190115_asumistuen_saajat_ja_maksut.md")
+```
+
+
+```{r include = FALSE}
+ library(knitr)
+ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
 
 Esimerkissä lataamme datan avoindata.fi-palvelusta ja piirrämme datasta neljä kuvaa
 Datan lataaminen
