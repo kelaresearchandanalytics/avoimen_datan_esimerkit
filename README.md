@@ -8,7 +8,7 @@ Lähdekoodit löytyvät kansiosta `Rmd` ja prosessoidut tiedostot kansiosta `mar
 
 | Päivämäärä | Data                     | Käyttöesimerkki        |
 | ---------- | -------------------      | ---------------------- |
-| 20190215   | [Asumistuen saajat ja maksut](https://beta.avoindata.fi/data/dataset/kelan-etuuksien-saajat-ja-maksetut-etuudet) | [esimerkki](esimerkit/20190115_asumistuen_saajat_ja_maksut.md) |
+| 20190215   | [Asumistuen saajat ja maksut](https://beta.avoindata.fi/data/dataset/kelan-etuuksien-saajat-ja-maksetut-etuudet) | [20190115_asumistuen_saajat_ja_maksut.md](esimerkit/20190115_asumistuen_saajat_ja_maksut.md) |
 
 
 
