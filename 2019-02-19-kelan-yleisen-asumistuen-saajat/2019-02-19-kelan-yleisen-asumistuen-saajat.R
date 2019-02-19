@@ -33,7 +33,7 @@ library(tidyverse)
 library(jsonlite)
 library(ckanr)
 
-#' # Datan ja metadatan lataaminen
+#' ## Resurssien lataaminen
 #' 
 #+ setup
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
@@ -45,8 +45,12 @@ resources <- x$results[[1]]$resources
 dat <- readr::read_csv2(resources[[1]]$url)
 meta <- fromJSON(txt = resources[[2]]$url)
 
-#' # Datan ja metadatan kuvailu
+#' # Resurssien kuvailu
 #' 
+#' 
+#+ print_description
+# Datan kuvaustieto
+meta$description %>% print()
 
 #+ print_metadata
 # Datan muuttujatieto
@@ -56,7 +60,7 @@ meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 # Datan ensimmäiset rivit 
 head(dat) %>% kable(format = "markdown")
 
-#' # Kuvio
+#' ## Kuvio
 #' 
 #+ kuva1
 library(ggplot2)

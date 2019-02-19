@@ -28,8 +28,8 @@ Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tue
     library(jsonlite)
     library(ckanr)
 
-Datan ja metadatan lataaminen
-=============================
+Resurssien lataaminen
+---------------------
 
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
     x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen")
@@ -40,8 +40,13 @@ Datan ja metadatan lataaminen
     dat <- readr::read_csv2(resources[[1]]$url)
     meta <- fromJSON(txt = resources[[2]]$url)
 
-Datan ja metadatan kuvailu
-==========================
+Resurssien kuvailu
+==================
+
+    # Datan kuvaustieto
+    meta$description %>% print()
+
+    ## [1] "Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot.\n Cras neque odio, sollicitudin a porttitor id, convallis ut nibh. Suspendisse vel purus nibh. Cras finibus dolor eu justo vehicula dapibus. Mauris egestas finibus velit eget mattis. Suspendisse sem nunc, vulputate eu lectus vitae, iaculis tempor augue. Curabitur placerat risus magna, at mattis magna pharetra id. Etiam ornare enim non sem suscipit egestas. \n"
 
     # Datan muuttujatieto
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
@@ -246,7 +251,7 @@ Datan ja metadatan kuvailu
 </table>
 
 Kuvio
-=====
+-----
 
     library(ggplot2)
     # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot

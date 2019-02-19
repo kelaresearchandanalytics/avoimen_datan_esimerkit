@@ -22,8 +22,8 @@ Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
     library(jsonlite)
     library(ckanr)
 
-Datan ja metadatan lataaminen
-=============================
+Resurssien lataaminen
+---------------------
 
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
     x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
@@ -35,7 +35,12 @@ Datan ja metadatan lataaminen
     meta <- fromJSON(txt = resources[[2]]$url)
 
 Datan ja metadatan kuvailu
-==========================
+--------------------------
+
+    # Datan kuvaustieto
+    meta$description %>% print()
+
+    ## [1] "Raportti sisältää kaikki Kelan maksamat keskeisimmät etuudet sekä tiedot etuuksien saajista, maksetuista etuuksista ja keskimääräiset etuudet (euroa/saaja).\nEräistä etuuksista, esimerkiksi eläkkeet ja asumistuet, ei ole tietoa vuoden aikana etuutta saaneista eikä keskimääräisistä etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.\n"
 
     # Datan muuttujatieto
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
@@ -137,7 +142,7 @@ Datan ja metadatan kuvailu
 </table>
 
 Kuvio
-=====
+-----
 
     library(ggplot2)
     dat %>% 
