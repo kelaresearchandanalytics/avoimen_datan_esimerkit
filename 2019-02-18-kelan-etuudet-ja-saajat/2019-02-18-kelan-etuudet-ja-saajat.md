@@ -41,85 +41,37 @@ Datan ja metadatan kuvailu
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
 <table>
-<colgroup>
-<col width="40%" />
-<col width="40%" />
-<col width="9%" />
-<col width="9%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th align="left">name</th>
-<th align="left">title</th>
 <th align="left">type</th>
 <th align="left">format</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">vuosi</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">etuus</td>
+<td align="left">string</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
+<td align="left">saajat</td>
+<td align="left">string</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">euroa_saaja</td>
+<td align="left">string</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
 <td align="left">kunta</td>
-<td align="left">Kunnan nimi suomeksi</td>
 <td align="left">string</td>
-<td align="left">default</td>
-</tr>
-<tr class="even">
-<td align="left">vuosi</td>
-<td align="left">vuosi</td>
-<td align="left">integer</td>
-<td align="left">default</td>
-</tr>
-<tr class="odd">
-<td align="left">ruokakuntatyyppi</td>
-<td align="left">Ruokakuntatyyppi</td>
-<td align="left">string</td>
-<td align="left">default</td>
-</tr>
-<tr class="even">
-<td align="left">saajaruokakunnat</td>
-<td align="left">Saajaruokakunnat</td>
-<td align="left">number</td>
-<td align="left">default</td>
-</tr>
-<tr class="odd">
-<td align="left">asumistuki_keskim_euroa_kk</td>
-<td align="left">Keskimääräinen asumistuki e/kk</td>
-<td align="left">integer</td>
-<td align="left">default</td>
-</tr>
-<tr class="even">
-<td align="left">asumismenot_keskim_euroa_kk</td>
-<td align="left">Keskim. asumismenot e/kk</td>
-<td align="left">integer</td>
-<td align="left">default</td>
-</tr>
-<tr class="odd">
-<td align="left">asumistukitulo_keskim_euroa_kk</td>
-<td align="left">Keskim. asumistukitulo e/kk</td>
-<td align="left">integer</td>
-<td align="left">default</td>
-</tr>
-<tr class="even">
-<td align="left">asumismenot_ennen_asumistukea_pros</td>
-<td align="left">Asumismenot ennen asumistukea %</td>
-<td align="left">integer</td>
-<td align="left">default</td>
-</tr>
-<tr class="odd">
-<td align="left">asumismenot_asumistuen_jalkeen_pros</td>
-<td align="left">Asumismenot asumistuen jälkeen %</td>
-<td align="left">integer</td>
-<td align="left">default</td>
-</tr>
-<tr class="even">
-<td align="left">asumismenot_keskim_e_m2_kk</td>
-<td align="left">Keskim. asumismenot e/m2/kk</td>
-<td align="left">number</td>
-<td align="left">default</td>
-</tr>
-<tr class="odd">
-<td align="left">asunnon_keskim_pintaala_m2_asunto</td>
-<td align="left">Asunnon keskim. pinta-ala m2/asunto</td>
-<td align="left">number</td>
 <td align="left">default</td>
 </tr>
 </tbody>
