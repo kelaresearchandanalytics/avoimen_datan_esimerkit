@@ -11,7 +11,7 @@
 #'  | ---------   | -------     | -------- |
 #'  | 2019-02-19  | [Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot](https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat) | Markus Kainu |
 #' 
-#' #' # Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
+#' # Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
 #' 
 #+ include = FALSE, eval = FALSE
 rmarkdown::render(input = "./2019-02-19-kelan-yleisen-asumistuen-saajat.R", 

@@ -20,8 +20,8 @@
 </tbody>
 </table>
 
-' \# Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
-==================================================================================================================
+Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
+=============================================================================================================
 
     # CRAN-paketit
     library(tidyverse)
