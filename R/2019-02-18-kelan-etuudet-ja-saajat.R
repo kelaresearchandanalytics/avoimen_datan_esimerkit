@@ -16,7 +16,7 @@
 #' 
 #+ include = FALSE, eval = FALSE
 rmarkdown::render(input = "./R/2019-02-18-kelan-etuudet-ja-saajat.R", 
-                  output_dir =  "./esimerkit/")
+                  output_file = "../esimerkit/2019-02-18-kelan-etuudet-ja-saajat.md")
 
 #+ knitr_setup, include=F
 library(knitr)

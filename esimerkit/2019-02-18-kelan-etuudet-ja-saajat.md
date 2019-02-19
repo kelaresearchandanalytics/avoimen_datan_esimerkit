@@ -94,4 +94,4 @@ Kuvio1
       ggplot(aes(x = kunta, y = saajat, label = saajat)) + geom_col() + coord_flip() + theme_minimal() +
       geom_text(aes(y = 0), hjust = 0, color = "white")
 
-![](/home/e275ceo/tekno/avoindata/avoimen_datan_kayttoesimerkit/esimerkit/2019-02-18-kelan-etuudet-ja-saajat_files/figure-markdown_strict/kuva1-1.png)
+![](../esimerkit/2019-02-18-kelan-etuudet-ja-saajat_files/figure-markdown_strict/kuva1-1.png)
