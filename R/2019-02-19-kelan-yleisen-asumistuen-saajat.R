@@ -1,6 +1,6 @@
 #' ---
-#' title: Avoimen datan käyttöesimerkit
-#' author: Markus Kainu
+#' title: "Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot"
+#' author: "Markus Koinu"
 #' date: "Päivitetty: **`r Sys.time()`**"
 #' output:
 #'   md_document:
@@ -9,13 +9,12 @@
 #' 
 #'  | pvm         | data        | tekijä   |
 #'  | ---------   | -------     | -------- |
-#'  | 2019-02-19  | [Kelan etuuksien saajat ja etuusmäärät](https://beta.avoindata.fi/data/fi/dataset/kelan-etuudet-ja-saajat) | Markus Kainu |
+#'  | 2019-02-19  | [Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot](https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat) | Markus Kainu |
 #' 
-#' 
-#' # Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
+#' #' # Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./R/2019-02-18-kelan-etuudet-ja-saajat.R", 
+rmarkdown::render(input = "./R/2019-02-19-kelan-yleisen-asumistuen-saajat.R", 
                   output_dir =  "./esimerkit/")
 
 #+ knitr_setup, include=F
@@ -29,6 +28,7 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
                            fig.heigth = 10)) # kuvien oletuskorkeus
 
 #+ project_setup
+# CRAN-paketit
 library(tidyverse)
 library(jsonlite)
 library(ckanr)
@@ -37,7 +37,7 @@ library(ckanr)
 #' 
 #+ setup
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen")
 resources <- x$results[[1]]$resources
 resources[[1]]$name
 resources[[2]]$name
@@ -60,18 +60,26 @@ meta$resources$schema$fields[[1]]
 # Datan ensimmäiset rivit 
 head(dat)
 
-#'
-#' # Kuvio1
-#' 
+#' # Kuvio
 #' 
 #+ kuva1
 library(ggplot2)
+# valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
 dat %>% 
-  filter(vuosi == 2018,
-         etuus == "Lapsilisä") %>% 
-  arrange(desc(saajat)) %>% 
-  slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, saajat)) %>% 
-  ggplot(aes(x = kunta, y = saajat, label = saajat)) + geom_col() + coord_flip() + theme_minimal() +
-  geom_text(aes(y = 0), hjust = 0, color = "white")
+  filter(ruokakuntatyyppi == "Yhteensä",
+         vuosi == 2018) %>% 
+  arrange(desc(asumistuki_keskim_euroa_kk)) %>% 
+  slice(1:10) %>% pull(kunta) -> kunnat
 
+dat %>% 
+  filter(ruokakuntatyyppi == "Yhteensä",
+         kunta %in% kunnat) %>% 
+  ggplot(aes(x = vuosi, y = asumistuki_keskim_euroa_kk, label = kunta,color = kunta)) + 
+  geom_line() + 
+  theme_minimal() +
+  geom_text(data = dat %>% 
+              filter(ruokakuntatyyppi == "Yhteensä",
+                     kunta %in% kunnat,
+                     vuosi == 2018), hjust = 0) +
+  theme(legend.position = "none") +
+  labs(title = "Keskimääräinen asumistuki kuukaudessa")

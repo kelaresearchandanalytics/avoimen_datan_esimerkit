@@ -18,7 +18,6 @@
 Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
 ========================================================
 
-    # CRAN-paketit
     library(tidyverse)
     library(jsonlite)
     library(ckanr)
@@ -27,7 +26,7 @@ Datan ja metadatan lataaminen
 =============================
 
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-    x <- package_search(q = "Kansaneläkelaitos")
+    x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
     resources <- x$results[[1]]$resources
     resources[[1]]$name
 
@@ -65,7 +64,7 @@ Datan ja metadatan kuvailu
     ##          name    type  format
     ## 1       vuosi integer default
     ## 2       etuus  string default
-    ## 3      saajat  number default
+    ## 3      saajat  string default
     ## 4 euroa_saaja  string default
     ## 5       kunta  string default
 
@@ -82,6 +81,9 @@ Datan ja metadatan kuvailu
     ## 5  2018 Erityishoitoraha                   22     2.38e16 Akaa 
     ## 6  2018 Koulumatkatuki                    434     7.23e16 Akaa
 
+Kuvio1
+======
+
     library(ggplot2)
     dat %>% 
       filter(vuosi == 2018,
@@ -92,4 +94,4 @@ Datan ja metadatan kuvailu
       ggplot(aes(x = kunta, y = saajat, label = saajat)) + geom_col() + coord_flip() + theme_minimal() +
       geom_text(aes(y = 0), hjust = 0, color = "white")
 
-![](../esimerkit/2019-02-18-kelan-etuudet-ja-saajat_files/figure-markdown_strict/kuva1-1.png)
+![](/home/e275ceo/tekno/avoindata/avoimen_datan_kayttoesimerkit/esimerkit/2019-02-18-kelan-etuudet-ja-saajat_files/figure-markdown_strict/kuva1-1.png)
