@@ -48,9 +48,9 @@ meta <- fromJSON(txt = resources[[2]]$url)
 #' # Resurssien kuvailu
 #' 
 #' 
-#+ print_description
+#+ print_description, results = "asis"
 # Datan kuvaustieto
-meta$description %>% print()
+meta$description %>% cat()
 
 #+ print_metadata
 # Datan muuttujatieto

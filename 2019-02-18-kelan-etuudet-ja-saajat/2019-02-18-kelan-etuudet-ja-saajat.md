@@ -38,9 +38,13 @@ Datan ja metadatan kuvailu
 --------------------------
 
     # Datan kuvaustieto
-    meta$description %>% print()
+    meta$description %>% cat()
 
-    ## [1] "Raportti sisältää kaikki Kelan maksamat keskeisimmät etuudet sekä tiedot etuuksien saajista, maksetuista etuuksista ja keskimääräiset etuudet (euroa/saaja).\nEräistä etuuksista, esimerkiksi eläkkeet ja asumistuet, ei ole tietoa vuoden aikana etuutta saaneista eikä keskimääräisistä etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.\n"
+Raportti sisältää kaikki Kelan maksamat keskeisimmät etuudet sekä tiedot
+etuuksien saajista, maksetuista etuuksista ja keskimääräiset etuudet
+(euroa/saaja). Eräistä etuuksista, esimerkiksi eläkkeet ja asumistuet,
+ei ole tietoa vuoden aikana etuutta saaneista eikä keskimääräisistä
+etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 
     # Datan muuttujatieto
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")

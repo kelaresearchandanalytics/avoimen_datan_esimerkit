@@ -44,9 +44,15 @@ Resurssien kuvailu
 ==================
 
     # Datan kuvaustieto
-    meta$description %>% print()
+    meta$description %>% cat()
 
-    ## [1] "Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot.\n Cras neque odio, sollicitudin a porttitor id, convallis ut nibh. Suspendisse vel purus nibh. Cras finibus dolor eu justo vehicula dapibus. Mauris egestas finibus velit eget mattis. Suspendisse sem nunc, vulputate eu lectus vitae, iaculis tempor augue. Curabitur placerat risus magna, at mattis magna pharetra id. Etiam ornare enim non sem suscipit egestas. \n"
+Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja
+ruokakunnan tulot. Cras neque odio, sollicitudin a porttitor id,
+convallis ut nibh. Suspendisse vel purus nibh. Cras finibus dolor eu
+justo vehicula dapibus. Mauris egestas finibus velit eget mattis.
+Suspendisse sem nunc, vulputate eu lectus vitae, iaculis tempor augue.
+Curabitur placerat risus magna, at mattis magna pharetra id. Etiam
+ornare enim non sem suscipit egestas.
 
     # Datan muuttujatieto
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
