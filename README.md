@@ -1,9 +1,9 @@
 Avoimen datan käyttöesimerkit
 =========================================
 
-Tässä projektissa on käyttöesimerkkejä ainakin R ja Python kielillä Kelan avoimen datan hyödytämiseen.
+Tässä projektissa on käyttöesimerkkejä R (ja Python) kielillä Kelan avoimen datan hyödytämiseen.
 
-Lähdekoodit löytyvät kansiosta `[R](R/)` ja prosessoidut tiedostot kansiosta `[esimerkit](esimerkit/)`. Lista esimerkeistä myös alla taulukossa.
+Lähdekoodit ja käännetyt esimerkit `.md`-muodossa löytyvät kunkin datan nimen ja julkaisupäivämäärän mukaisista kansiosta. Linkit esimerkkeihin myös alla.
 
 
 | Päivämäärä | Data                     | Käyttöesimerkki        |
