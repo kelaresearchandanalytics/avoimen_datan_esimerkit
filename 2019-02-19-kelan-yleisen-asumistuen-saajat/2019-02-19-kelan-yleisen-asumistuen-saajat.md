@@ -34,13 +34,8 @@ Datan ja metadatan lataaminen
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
     x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen")
     resources <- x$results[[1]]$resources
-    resources[[1]]$name
-
-    ## [1] "Kelan yleisen asumistuen saajat"
-
-    resources[[2]]$name
-
-    ## [1] "Metadata"
+    # resources[[1]]$name
+    # resources[[2]]$name
 
     dat <- readr::read_csv2(resources[[1]]$url)
     meta <- fromJSON(txt = resources[[2]]$url)
@@ -48,68 +43,207 @@ Datan ja metadatan lataaminen
 Datan ja metadatan kuvailu
 ==========================
 
-    meta$profile
-
-    ## [1] "data-package"
-
-    meta$name
-
-    ## [1] "Kelan yleisen asumistuen saajat"
-
-    meta$title
-
-    ## [1] "Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot"
-
-    meta$description
-
-    ## [1] "Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot.\n Cras neque odio, sollicitudin a porttitor id, convallis ut nibh. Suspendisse vel purus nibh. Cras finibus dolor eu justo vehicula dapibus. Mauris egestas finibus velit eget mattis. Suspendisse sem nunc, vulputate eu lectus vitae, iaculis tempor augue. Curabitur placerat risus magna, at mattis magna pharetra id. Etiam ornare enim non sem suscipit egestas. \n"
-
     # Datan muuttujatieto
-    meta$resources$schema$fields[[1]]
+    meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
-    ##                                   name                               title
-    ## 1                                kunta                Kunnan nimi suomeksi
-    ## 2                                vuosi                               vuosi
-    ## 3                     ruokakuntatyyppi                    Ruokakuntatyyppi
-    ## 4                     saajaruokakunnat                    Saajaruokakunnat
-    ## 5           asumistuki_keskim_euroa_kk      Keskimääräinen asumistuki e/kk
-    ## 6          asumismenot_keskim_euroa_kk            Keskim. asumismenot e/kk
-    ## 7       asumistukitulo_keskim_euroa_kk         Keskim. asumistukitulo e/kk
-    ## 8   asumismenot_ennen_asumistukea_pros     Asumismenot ennen asumistukea %
-    ## 9  asumismenot_asumistuen_jalkeen_pros   Asumismenot asumistuen  jälkeen %
-    ## 10          asumismenot_keskim_e_m2_kk         Keskim. asumismenot e/m2/kk
-    ## 11   asunnon_keskim_pintaala_m2_asunto Asunnon keskim. pinta-ala m2/asunto
-    ##       type  format
-    ## 1   string default
-    ## 2  integer default
-    ## 3   string default
-    ## 4   number default
-    ## 5  integer default
-    ## 6  integer default
-    ## 7  integer default
-    ## 8  integer default
-    ## 9  integer default
-    ## 10  number default
-    ## 11  number default
+<table>
+<colgroup>
+<col width="40%" />
+<col width="40%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="left">title</th>
+<th align="left">type</th>
+<th align="left">format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">kunta</td>
+<td align="left">Kunnan nimi suomeksi</td>
+<td align="left">string</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">vuosi</td>
+<td align="left">vuosi</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
+<td align="left">ruokakuntatyyppi</td>
+<td align="left">Ruokakuntatyyppi</td>
+<td align="left">string</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">saajaruokakunnat</td>
+<td align="left">Saajaruokakunnat</td>
+<td align="left">number</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
+<td align="left">asumistuki_keskim_euroa_kk</td>
+<td align="left">Keskimääräinen asumistuki e/kk</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">asumismenot_keskim_euroa_kk</td>
+<td align="left">Keskim. asumismenot e/kk</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
+<td align="left">asumistukitulo_keskim_euroa_kk</td>
+<td align="left">Keskim. asumistukitulo e/kk</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">asumismenot_ennen_asumistukea_pros</td>
+<td align="left">Asumismenot ennen asumistukea %</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
+<td align="left">asumismenot_asumistuen_jalkeen_pros</td>
+<td align="left">Asumismenot asumistuen jälkeen %</td>
+<td align="left">integer</td>
+<td align="left">default</td>
+</tr>
+<tr class="even">
+<td align="left">asumismenot_keskim_e_m2_kk</td>
+<td align="left">Keskim. asumismenot e/m2/kk</td>
+<td align="left">number</td>
+<td align="left">default</td>
+</tr>
+<tr class="odd">
+<td align="left">asunnon_keskim_pintaala_m2_asunto</td>
+<td align="left">Asunnon keskim. pinta-ala m2/asunto</td>
+<td align="left">number</td>
+<td align="left">default</td>
+</tr>
+</tbody>
+</table>
 
     # Datan ensimmäiset rivit 
-    head(dat)
+    head(dat) %>% kable(format = "markdown")
 
-    ## # A tibble: 6 x 11
-    ##   kunta vuosi ruokakuntatyyppi saajaruokakunnat asumistuki_kesk…
-    ##   <chr> <dbl> <chr>                       <dbl>            <dbl>
-    ## 1 Akaa   2018 Yhteensä                    60400          2796358
-    ## 2 Akaa   2018 Yksin asuvat                37900          2337341
-    ## 3 Akaa   2018 Lapsettomat par…             2700          2688667
-    ## 4 Akaa   2018 Lapsiperheet yh…            18400          3784205
-    ## 5 Akaa   2018 Kahden huoltaja…             3800          3875579
-    ## 6 Akaa   2018 Yhden huoltajan…            14600          3760423
-    ## # … with 6 more variables: asumismenot_keskim_euroa_kk <dbl>,
-    ## #   asumistukitulo_keskim_euroa_kk <dbl>,
-    ## #   asumismenot_ennen_asumistukea_pros <dbl>,
-    ## #   asumismenot_asumistuen_jalkeen_pros <dbl>,
-    ## #   asumismenot_keskim_e_m2_kk <dbl>,
-    ## #   asunnon_keskim_pintaala_m2_asunto <dbl>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="2%" />
+<col width="9%" />
+<col width="6%" />
+<col width="9%" />
+<col width="10%" />
+<col width="11%" />
+<col width="12%" />
+<col width="13%" />
+<col width="9%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">kunta</th>
+<th align="right">vuosi</th>
+<th align="left">ruokakuntatyyppi</th>
+<th align="right">saajaruokakunnat</th>
+<th align="right">asumistuki_keskim_euroa_kk</th>
+<th align="right">asumismenot_keskim_euroa_kk</th>
+<th align="right">asumistukitulo_keskim_euroa_kk</th>
+<th align="right">asumismenot_ennen_asumistukea_pros</th>
+<th align="right">asumismenot_asumistuen_jalkeen_pros</th>
+<th align="right">asumismenot_keskim_e_m2_kk</th>
+<th align="right">asunnon_keskim_pintaala_m2_asunto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Akaa</td>
+<td align="right">2018</td>
+<td align="left">Yhteensä</td>
+<td align="right">60400</td>
+<td align="right">2796358</td>
+<td align="right">5415889</td>
+<td align="right">9667248</td>
+<td align="right">56023</td>
+<td align="right">27097</td>
+<td align="right">91049</td>
+<td align="right">59483</td>
+</tr>
+<tr class="even">
+<td align="left">Akaa</td>
+<td align="right">2018</td>
+<td align="left">Yksin asuvat</td>
+<td align="right">37900</td>
+<td align="right">2337341</td>
+<td align="right">4500426</td>
+<td align="right">6716300</td>
+<td align="right">67008</td>
+<td align="right">32207</td>
+<td align="right">94712</td>
+<td align="right">47517</td>
+</tr>
+<tr class="odd">
+<td align="left">Akaa</td>
+<td align="right">2018</td>
+<td align="left">Lapsettomat parit</td>
+<td align="right">2700</td>
+<td align="right">2688667</td>
+<td align="right">6000330</td>
+<td align="right">12090970</td>
+<td align="right">49627</td>
+<td align="right">27390</td>
+<td align="right">95468</td>
+<td align="right">62852</td>
+</tr>
+<tr class="even">
+<td align="left">Akaa</td>
+<td align="right">2018</td>
+<td align="left">Lapsiperheet yhteensä</td>
+<td align="right">18400</td>
+<td align="right">3784205</td>
+<td align="right">7194155</td>
+<td align="right">15167695</td>
+<td align="right">47431</td>
+<td align="right">22482</td>
+<td align="right">86399</td>
+<td align="right">83266</td>
+</tr>
+<tr class="odd">
+<td align="left">Akaa</td>
+<td align="right">2018</td>
+<td align="left">Kahden huoltajan perheet</td>
+<td align="right">3800</td>
+<td align="right">3875579</td>
+<td align="right">8512903</td>
+<td align="right">23076629</td>
+<td align="right">36890</td>
+<td align="right">20095</td>
+<td align="right">87905</td>
+<td align="right">96842</td>
+</tr>
+<tr class="even">
+<td align="left">Akaa</td>
+<td align="right">2018</td>
+<td align="left">Yhden huoltajan perheet</td>
+<td align="right">14600</td>
+<td align="right">3760423</td>
+<td align="right">6850919</td>
+<td align="right">13109205</td>
+<td align="right">52260</td>
+<td align="right">23575</td>
+<td align="right">85916</td>
+<td align="right">79740</td>
+</tr>
+</tbody>
+</table>
 
 Kuvio
 =====
@@ -133,6 +267,6 @@ Kuvio
                          kunta %in% kunnat,
                          vuosi == 2018), hjust = 0) +
       theme(legend.position = "none") +
-      labs(title = "Keskimääräinen asumistuki kuukaudessa")
+      labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
 ![](2019-02-19-kelan-yleisen-asumistuen-saajat_files/figure-markdown_strict/kuva1-1.png)

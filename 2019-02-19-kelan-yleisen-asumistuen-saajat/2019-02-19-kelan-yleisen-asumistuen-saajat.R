@@ -39,8 +39,8 @@ library(ckanr)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen")
 resources <- x$results[[1]]$resources
-resources[[1]]$name
-resources[[2]]$name
+# resources[[1]]$name
+# resources[[2]]$name
 
 dat <- readr::read_csv2(resources[[1]]$url)
 meta <- fromJSON(txt = resources[[2]]$url)
@@ -48,17 +48,13 @@ meta <- fromJSON(txt = resources[[2]]$url)
 #' # Datan ja metadatan kuvailu
 #' 
 
-#+ print_data
-meta$profile
-meta$name
-meta$title
-meta$description
-
+#+ print_metadata
 # Datan muuttujatieto
-meta$resources$schema$fields[[1]]
+meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
+#+ print_data
 # Datan ensimmäiset rivit 
-head(dat)
+head(dat) %>% kable(format = "markdown")
 
 #' # Kuvio
 #' 
@@ -82,4 +78,4 @@ dat %>%
                      kunta %in% kunnat,
                      vuosi == 2018), hjust = 0) +
   theme(legend.position = "none") +
-  labs(title = "Keskimääräinen asumistuki kuukaudessa")
+  labs(title = "Esimerkkikuvion esimerkkiotsikko")
