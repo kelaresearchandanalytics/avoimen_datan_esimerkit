@@ -1,6 +1,6 @@
 #' ---
-#' title: Avoimen datan käyttöesimerkit
-#' author: Markus Kainu
+#' title: "Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät"
+#' author: "Markus Kainu"
 #' date: "Päivitetty: **`r Sys.time()`**"
 #' output:
 #'   md_document:
@@ -15,8 +15,8 @@
 #' # Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./R/2019-02-18-kelan-etuudet-ja-saajat.R", 
-                  output_file = "../esimerkit/2019-02-18-kelan-etuudet-ja-saajat.md")
+rmarkdown::render(input = "./2019-02-18-kelan-etuudet-ja-saajat.R", 
+                  output_file = "./2019-02-18-kelan-etuudet-ja-saajat.md")
 
 #+ knitr_setup, include=F
 library(knitr)

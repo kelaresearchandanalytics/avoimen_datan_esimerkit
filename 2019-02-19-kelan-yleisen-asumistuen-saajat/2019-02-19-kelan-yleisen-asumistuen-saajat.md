@@ -135,4 +135,4 @@ Kuvio
       theme(legend.position = "none") +
       labs(title = "Keskimääräinen asumistuki kuukaudessa")
 
-![](/home/e275ceo/tekno/avoindata/avoimen_datan_kayttoesimerkit/2019-02-19-kelan-yleisen-asumistuen-saajat/2019-02-19-kelan-yleisen-asumistuen-saajat_files/figure-markdown_strict/kuva1-1.png)
+![](2019-02-19-kelan-yleisen-asumistuen-saajat_files/figure-markdown_strict/kuva1-1.png)
