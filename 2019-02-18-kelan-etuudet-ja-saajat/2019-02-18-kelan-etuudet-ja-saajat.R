@@ -39,8 +39,8 @@ library(ckanr)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
 resources <- x$results[[1]]$resources
-resources[[1]]$name
-resources[[2]]$name
+# resources[[1]]$name
+# resources[[2]]$name
 
 dat <- readr::read_csv2(resources[[1]]$url)
 meta <- fromJSON(txt = resources[[2]]$url)
@@ -48,21 +48,16 @@ meta <- fromJSON(txt = resources[[2]]$url)
 #' # Datan ja metadatan kuvailu
 #' 
 
-#+ print_data
-meta$profile
-meta$name
-meta$title
-meta$description
-
+#+ print_metadata
 # Datan muuttujatieto
-meta$resources$schema$fields[[1]]
+meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
+#+ print_data
 # Datan ensimmäiset rivit 
-head(dat)
+head(dat)  %>% kable(format = "markdown")
 
 #'
-#' # Kuvio1
-#' 
+#' # Kuvio
 #' 
 #+ kuva1
 library(ggplot2)
@@ -72,6 +67,10 @@ dat %>%
   arrange(desc(saajat)) %>% 
   slice(1:20) %>% 
   mutate(kunta = forcats::fct_reorder(kunta, saajat)) %>% 
-  ggplot(aes(x = kunta, y = saajat, label = saajat)) + geom_col() + coord_flip() + theme_minimal() +
-  geom_text(aes(y = 0), hjust = 0, color = "white")
+  ggplot(aes(x = kunta, y = saajat, label = saajat)) + 
+  geom_col() + 
+  coord_flip() + 
+  theme_minimal() +
+  geom_text(aes(y = 0), hjust = 0, color = "white") +
+  labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
