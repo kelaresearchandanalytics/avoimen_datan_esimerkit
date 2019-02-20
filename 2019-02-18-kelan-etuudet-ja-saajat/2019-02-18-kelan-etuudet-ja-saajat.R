@@ -15,7 +15,7 @@
 #' # Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-18-kelan-etuudet-ja-saajat.R", 
+rmarkdown::render(input = "./2019-02-18-kelan-etuudet-ja-saajat/2019-02-18-kelan-etuudet-ja-saajat.R", 
                   output_file = "./2019-02-18-kelan-etuudet-ja-saajat.md")
 
 #+ knitr_setup, include=F
@@ -35,6 +35,7 @@ library(jsonlite)
 library(ckanr)
 library(readr)
 library(knitr)
+library(glue)
 
 #' ## Resurssien lataaminen
 #' 

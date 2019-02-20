@@ -24,6 +24,7 @@ Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
     library(ckanr)
     library(readr)
     library(knitr)
+    library(glue)
 
 Resurssien lataaminen
 ---------------------
@@ -135,14 +136,14 @@ etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 <td align="right">2018</td>
 <td align="left">Erityishoitoraha</td>
 <td align="right">22</td>
-<td align="right">2.380646e+16</td>
+<td align="right">2380.646</td>
 <td align="left">Akaa</td>
 </tr>
 <tr class="even">
 <td align="right">2018</td>
 <td align="left">Koulumatkatuki</td>
 <td align="right">434</td>
-<td align="right">7.226750e+16</td>
+<td align="right">722.675</td>
 <td align="left">Akaa</td>
 </tr>
 </tbody>
@@ -197,21 +198,21 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">NA</td>
 <td align="left">2018</td>
 <td align="left">NA</td>
-<td align="left">Eläketuki</td>
+<td align="left">Elatustuki</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">NA</td>
 <td align="left">2018</td>
 <td align="left">NA</td>
-<td align="left">Elatustuki</td>
+<td align="left">Eläke-etuudet (pl. takuueläke)</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">NA</td>
 <td align="left">2018</td>
 <td align="left">NA</td>
-<td align="left">Eläke-etuudet (pl. takuueläke)</td>
+<td align="left">Eläketuki</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
@@ -224,42 +225,42 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">6</td>
 <td align="left">2018</td>
-<td align="left">720.42169999999999</td>
+<td align="left">720,4217</td>
 <td align="left">Erityishoitoraha</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">78</td>
 <td align="left">2018</td>
-<td align="left">1169.4549999999999</td>
+<td align="left">1169,4550</td>
 <td align="left">Koulumatkatuki</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">69</td>
 <td align="left">2018</td>
-<td align="left">4396.6304</td>
+<td align="left">4396,6304</td>
 <td align="left">Kuntoutus</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">15</td>
 <td align="left">2018</td>
-<td align="left">1742.3827000000001</td>
+<td align="left">1742,3827</td>
 <td align="left">Kuntoutusraha</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">286</td>
 <td align="left">2018</td>
-<td align="left">2737.9693000000002</td>
+<td align="left">2737,9693</td>
 <td align="left">Lapsilisä</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">56</td>
 <td align="left">2018</td>
-<td align="left">2688.1235999999999</td>
+<td align="left">2688,1236</td>
 <td align="left">Lastenhoidon tuet</td>
 </tr>
 <tr class="odd">
@@ -280,14 +281,14 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">105</td>
 <td align="left">2018</td>
-<td align="left">3668.8578000000002</td>
+<td align="left">3668,8578</td>
 <td align="left">Opintotuki</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">10</td>
 <td align="left">2018</td>
-<td align="left">2500</td>
+<td align="left">2500,0000</td>
 <td align="left">Perhevapaakorvaus</td>
 </tr>
 <tr class="odd">
@@ -301,14 +302,14 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">2107</td>
 <td align="left">2018</td>
-<td align="left">569.60789999999997</td>
+<td align="left">569,6079</td>
 <td align="left">Sairaanhoitokorvaukset</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">188</td>
 <td align="left">2018</td>
-<td align="left">2715.9276</td>
+<td align="left">2715,9276</td>
 <td align="left">Sairauspäivärahat</td>
 </tr>
 <tr class="even">
@@ -329,7 +330,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">109</td>
 <td align="left">2018</td>
-<td align="left">5008.3770000000004</td>
+<td align="left">5008,3770</td>
 <td align="left">Työttömyysturva</td>
 </tr>
 <tr class="odd">
@@ -343,14 +344,14 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">68</td>
 <td align="left">2018</td>
-<td align="left">6475.2489999999998</td>
+<td align="left">6475,2490</td>
 <td align="left">Vanhempainpäiväraha</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">13</td>
 <td align="left">2018</td>
-<td align="left">1426.2923000000001</td>
+<td align="left">1426,2923</td>
 <td align="left">Vuosilomakustannuskorvaus</td>
 </tr>
 <tr class="even">
@@ -364,7 +365,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">18</td>
 <td align="left">2018</td>
-<td align="left">202.3989</td>
+<td align="left">202,3989</td>
 <td align="left">Äitiysavustus</td>
 </tr>
 <tr class="even">
@@ -406,35 +407,35 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">81</td>
 <td align="left">2017</td>
-<td align="left">991.23419999999999</td>
+<td align="left">991,2342</td>
 <td align="left">Koulumatkatuki</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">63</td>
 <td align="left">2017</td>
-<td align="left">3663.261</td>
+<td align="left">3663,2610</td>
 <td align="left">Kuntoutus</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">23</td>
 <td align="left">2017</td>
-<td align="left">872.12909999999999</td>
+<td align="left">872,1291</td>
 <td align="left">Kuntoutusraha</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">293</td>
 <td align="left">2017</td>
-<td align="left">2745.0531000000001</td>
+<td align="left">2745,0531</td>
 <td align="left">Lapsilisä</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">65</td>
 <td align="left">2017</td>
-<td align="left">2388.8056999999999</td>
+<td align="left">2388,8057</td>
 <td align="left">Lastenhoidon tuet</td>
 </tr>
 <tr class="even">
@@ -448,14 +449,14 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">112</td>
 <td align="left">2017</td>
-<td align="left">3318.0358000000001</td>
+<td align="left">3318,0358</td>
 <td align="left">Opintotuki</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">4</td>
 <td align="left">2017</td>
-<td align="left">2500</td>
+<td align="left">2500,0000</td>
 <td align="left">Perhevapaakorvaus</td>
 </tr>
 <tr class="odd">
@@ -469,21 +470,21 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">2143</td>
 <td align="left">2017</td>
-<td align="left">581.09299999999996</td>
+<td align="left">581,0930</td>
 <td align="left">Sairaanhoitokorvaukset</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">181</td>
 <td align="left">2017</td>
-<td align="left">2716.7817</td>
+<td align="left">2716,7817</td>
 <td align="left">Sairauspäivärahat</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>
 <td align="left">7</td>
 <td align="left">2017</td>
-<td align="left">2326.6329000000001</td>
+<td align="left">2326,6329</td>
 <td align="left">Sotilasavustus</td>
 </tr>
 <tr class="odd">
@@ -497,7 +498,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">122</td>
 <td align="left">2017</td>
-<td align="left">5731.9712</td>
+<td align="left">5731,9712</td>
 <td align="left">Työttömyysturva</td>
 </tr>
 <tr class="odd">
@@ -511,14 +512,14 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">65</td>
 <td align="left">2017</td>
-<td align="left">6983.9569000000001</td>
+<td align="left">6983,9569</td>
 <td align="left">Vanhempainpäiväraha</td>
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">11</td>
 <td align="left">2017</td>
-<td align="left">1250.1909000000001</td>
+<td align="left">1250,1909</td>
 <td align="left">Vuosilomakustannuskorvaus</td>
 </tr>
 <tr class="even">
@@ -532,7 +533,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Veteli</td>
 <td align="left">28</td>
 <td align="left">2017</td>
-<td align="left">200.26859999999999</td>
+<td align="left">200,2686</td>
 <td align="left">Äitiysavustus</td>
 </tr>
 </tbody>

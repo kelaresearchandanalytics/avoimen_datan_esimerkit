@@ -14,7 +14,7 @@
 #' # Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-19-kelan-yleisen-asumistuen-saajat.R", 
+rmarkdown::render(input = "./2019-02-19-kelan-yleisen-asumistuen-saajat/2019-02-19-kelan-yleisen-asumistuen-saajat.R", 
                   output_file = "./2019-02-19-kelan-yleisen-asumistuen-saajat.md")
 
 #+ knitr_setup, include=F
