@@ -516,6 +516,19 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 </tr>
 <tr class="odd">
 <td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2016</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Lapsettomat parit</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
 <td align="left">423,4747</td>
 <td align="left">6,4390</td>
 <td align="left">2016</td>
@@ -527,7 +540,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">Yhteensä</td>
 <td align="left">233,2491</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Veteli</td>
 <td align="left">334,7079</td>
 <td align="left">5,8721</td>
@@ -539,19 +552,6 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td align="left">18,686</td>
 <td align="left">Yksin asuvat</td>
 <td align="left">195,6126</td>
-</tr>
-<tr class="odd">
-<td align="left">Veteli</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">Lapsettomat parit</td>
-<td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Veteli</td>

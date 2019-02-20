@@ -53,11 +53,18 @@ etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
 <table>
+<colgroup>
+<col width="5%" />
+<col width="3%" />
+<col width="3%" />
+<col width="86%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">name</th>
 <th align="left">type</th>
 <th align="left">format</th>
+<th align="left">title</th>
 </tr>
 </thead>
 <tbody>
@@ -65,26 +72,31 @@ etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 <td align="left">vuosi</td>
 <td align="left">integer</td>
 <td align="left">default</td>
+<td align="left">Mutta kaikki kulovalkean jäljet olivat jo kadonneet hänen piiristänsä ja tuuhea metsä kasvanut sijaan. - Ja tämä on niiden seitsemän veljen koto, joiden elämänvaiheita tässä nyt käyn kertoilemaan.</td>
 </tr>
 <tr class="even">
 <td align="left">etuus</td>
 <td align="left">string</td>
 <td align="left">default</td>
+<td align="left">Mutta kaikki kulovalkean jäljet olivat jo kadonneet hänen piiristänsä ja tuuhea metsä kasvanut sijaan. - Ja tämä on niiden seitsemän veljen koto, joiden elämänvaiheita tässä nyt käyn kertoilemaan.</td>
 </tr>
 <tr class="odd">
 <td align="left">saajat</td>
-<td align="left">string</td>
+<td align="left">integer</td>
 <td align="left">default</td>
+<td align="left">Mutta kaikki kulovalkean jäljet olivat jo kadonneet hänen piiristänsä ja tuuhea metsä kasvanut sijaan. - Ja tämä on niiden seitsemän veljen koto, joiden elämänvaiheita tässä nyt käyn kertoilemaan.</td>
 </tr>
 <tr class="even">
 <td align="left">euroa_saaja</td>
-<td align="left">string</td>
+<td align="left">number</td>
 <td align="left">default</td>
+<td align="left">Mutta kaikki kulovalkean jäljet olivat jo kadonneet hänen piiristänsä ja tuuhea metsä kasvanut sijaan. - Ja tämä on niiden seitsemän veljen koto, joiden elämänvaiheita tässä nyt käyn kertoilemaan.</td>
 </tr>
 <tr class="odd">
 <td align="left">kunta</td>
 <td align="left">string</td>
 <td align="left">default</td>
+<td align="left">Mutta kaikki kulovalkean jäljet olivat jo kadonneet hänen piiristänsä ja tuuhea metsä kasvanut sijaan. - Ja tämä on niiden seitsemän veljen koto, joiden elämänvaiheita tässä nyt käyn kertoilemaan.</td>
 </tr>
 </tbody>
 </table>
