@@ -29,9 +29,12 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
 
 #+ project_setup
 # CRAN-paketit
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 library(jsonlite)
 library(ckanr)
+library(readr)
+library(knitr)
 
 #' ## Resurssien lataaminen
 #' 
@@ -39,31 +42,28 @@ library(ckanr)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen")
 resources <- x$results[[1]]$resources
-# resources[[1]]$name
-# resources[[2]]$name
 
-dat <- readr::read_csv2(resources[[1]]$url)
-meta <- fromJSON(txt = resources[[2]]$url)
+dat <- readr::read_csv2(resources[[1]]$url) # data
+meta <- fromJSON(txt = resources[[2]]$url) # metadata
 
 #' # Resurssien kuvailu
 #' 
+#' **Datan kuvaustieto**
 #' 
 #+ print_description, results = "asis"
-# Datan kuvaustieto
 meta$description %>% cat()
 
+#' **Datan muuttujatieto**
 #+ print_metadata
-# Datan muuttujatieto
 meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
+#' **Datan ensimmäiset rivit**
 #+ print_data
-# Datan ensimmäiset rivit 
 head(dat) %>% kable(format = "markdown")
 
 #' ## Kuvio
 #' 
 #+ kuva1
-library(ggplot2)
 # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
 dat %>% 
   filter(ruokakuntatyyppi == "Yhteensä",
@@ -71,6 +71,7 @@ dat %>%
   arrange(desc(asumistuki_keskim_euroa_kk)) %>% 
   slice(1:10) %>% pull(kunta) -> kunnat
 
+# Piirretään kuva
 dat %>% 
   filter(ruokakuntatyyppi == "Yhteensä",
          kunta %in% kunnat) %>% 

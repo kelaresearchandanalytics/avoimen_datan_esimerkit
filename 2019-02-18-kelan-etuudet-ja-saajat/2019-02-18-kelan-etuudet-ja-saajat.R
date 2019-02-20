@@ -47,15 +47,15 @@ meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
 
 #' ## Datan ja metadatan kuvailu
 #' 
-#' Datan kuvaustieto
+#' **Datan kuvaustieto**
 #+ print_description, results = "asis"
 meta$description %>% cat()
 
-#' Datan muuttujatieto
+#' **Datan muuttujatieto**
 #+ print_metadata
 meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
-#' Datan ensimmäiset rivit 
+#' **Datan ensimmäiset rivit**
 #+ print_data
 head(dat)  %>% kable(format = "markdown")
 

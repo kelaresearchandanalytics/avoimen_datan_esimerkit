@@ -37,7 +37,7 @@ Resurssien lataaminen
 Datan ja metadatan kuvailu
 --------------------------
 
-Datan kuvaustieto
+**Datan kuvaustieto**
 
     meta$description %>% cat()
 
@@ -47,7 +47,7 @@ etuuksien saajista, maksetuista etuuksista ja keskimääräiset etuudet
 ei ole tietoa vuoden aikana etuutta saaneista eikä keskimääräisistä
 etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 
-Datan muuttujatieto
+**Datan muuttujatieto**
 
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
@@ -88,7 +88,7 @@ Datan muuttujatieto
 </tbody>
 </table>
 
-Datan ensimmäiset rivit
+**Datan ensimmäiset rivit**
 
     head(dat)  %>% kable(format = "markdown")
 
