@@ -165,3 +165,15 @@ Kuvio
       labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
 ![](2019-02-18-kelan-etuudet-ja-saajat_files/figure-markdown_strict/kuva1-1.png)
+
+Datastore-api
+-------------
+
+Jos et tarvitse koko aineistoa, voit suodattaa siitä osio SQL:llä
+käyttäen CKAN:n DataStore-rajapintaa.
+
+Alla olevassa esimerkissä tehdään rajaus `kunta`-muuttujasta ja siis
+etsitään vaan kuntaa *Veteli* koskevat tiedot.
+
+    kunta <- "Veteli"
+    fromJSON(glue("https://beta.avoindata.fi/data/fi/data/api/3/action/datastore_search_sql?sql=SELECT * from \"{resources[[1]]$id}\" WHERE kunta LIKE '{kunta}'"), TRUE)

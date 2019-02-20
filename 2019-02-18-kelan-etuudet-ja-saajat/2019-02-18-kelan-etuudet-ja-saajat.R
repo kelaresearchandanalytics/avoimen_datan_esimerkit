@@ -76,3 +76,11 @@ dat %>%
   geom_text(aes(y = 0), hjust = 0, color = "white") +
   labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
+#' ## Datastore-api
+#' 
+#' Jos et tarvitse koko aineistoa, voit suodattaa siitä osio SQL:llä käyttäen CKAN:n DataStore-rajapintaa.
+#' 
+#' Alla olevassa esimerkissä tehdään rajaus `kunta`-muuttujasta ja siis etsitään vaan kuntaa *Veteli* koskevat tiedot.
+#+ eval = FALSE
+kunta <- "Veteli"
+fromJSON(glue("https://beta.avoindata.fi/data/fi/data/api/3/action/datastore_search_sql?sql=SELECT * from \"{resources[[1]]$id}\" WHERE kunta LIKE '{kunta}'"), TRUE)
