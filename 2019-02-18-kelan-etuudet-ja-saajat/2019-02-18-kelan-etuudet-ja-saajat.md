@@ -18,9 +18,12 @@
 Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
 ========================================================
 
-    library(tidyverse)
+    library(dplyr)
+    library(ggplot2)
     library(jsonlite)
     library(ckanr)
+    library(readr)
+    library(knitr)
 
 Resurssien lataaminen
 ---------------------
@@ -28,16 +31,14 @@ Resurssien lataaminen
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
     x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
     resources <- x$results[[1]]$resources
-    # resources[[1]]$name
-    # resources[[2]]$name
-
-    dat <- readr::read_csv2(resources[[1]]$url)
-    meta <- fromJSON(txt = resources[[2]]$url)
+    dat <- read_csv2(resources[[1]]$url) # Lataa data
+    meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
 
 Datan ja metadatan kuvailu
 --------------------------
 
-    # Datan kuvaustieto
+Datan kuvaustieto
+
     meta$description %>% cat()
 
 Raportti sisältää kaikki Kelan maksamat keskeisimmät etuudet sekä tiedot
@@ -46,7 +47,8 @@ etuuksien saajista, maksetuista etuuksista ja keskimääräiset etuudet
 ei ole tietoa vuoden aikana etuutta saaneista eikä keskimääräisistä
 etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 
-    # Datan muuttujatieto
+Datan muuttujatieto
+
     meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
 
 <table>
@@ -86,7 +88,8 @@ etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 </tbody>
 </table>
 
-    # Datan ensimmäiset rivit 
+Datan ensimmäiset rivit
+
     head(dat)  %>% kable(format = "markdown")
 
 <table>
@@ -148,7 +151,6 @@ etuuksista. Niistä on vain poikkileikkaustiedot kuukausittain.
 Kuvio
 -----
 
-    library(ggplot2)
     dat %>% 
       filter(vuosi == 2018,
              etuus == "Lapsilisä") %>% 
