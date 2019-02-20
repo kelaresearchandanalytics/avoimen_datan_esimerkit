@@ -297,4 +297,313 @@ Alla olevassa esimerkissä tehdään rajaus `kunta`-muuttujasta ja siis
 etsitään vaan kuntaa *Veteli* koskevat tiedot.
 
     kunta <- "Veteli"
-    fromJSON(glue("https://beta.avoindata.fi/data/fi/data/api/3/action/datastore_search_sql?sql=SELECT * from \"{resources[[1]]$id}\" WHERE kunta LIKE '{kunta}'"), TRUE)
+    res <- ckanr::ds_search_sql(sql = glue("SELECT * from \"{resources[[1]]$id}\" WHERE kunta LIKE '{kunta}'"), as = "table")
+    res$records %>% 
+      select(-`_full_text`, -`_id`) %>% 
+      kable(format = "markdown")
+
+<table>
+<colgroup>
+<col width="2%" />
+<col width="10%" />
+<col width="9%" />
+<col width="2%" />
+<col width="12%" />
+<col width="12%" />
+<col width="6%" />
+<col width="11%" />
+<col width="13%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">kunta</th>
+<th align="left">asumismenot_keskim_euroa_kk</th>
+<th align="left">asumismenot_keskim_e_m2_kk</th>
+<th align="left">vuosi</th>
+<th align="left">asunnon_keskim_pintaala_m2_asunto</th>
+<th align="left">asumismenot_ennen_asumistukea_pros</th>
+<th align="left">saajaruokakunnat</th>
+<th align="left">asumistukitulo_keskim_euroa_kk</th>
+<th align="left">asumismenot_asumistuen_jalkeen_pros</th>
+<th align="left">ruokakuntatyyppi</th>
+<th align="left">asumistuki_keskim_euroa_kk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">439.4826</td>
+<td align="left">6.6979</td>
+<td align="left">2018</td>
+<td align="left">65.615</td>
+<td align="left">51.289</td>
+<td align="left">39.00</td>
+<td align="left">856.8792</td>
+<td align="left">19.228</td>
+<td align="left">Yhteensä</td>
+<td align="left">274.7210</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">350.3112</td>
+<td align="left">6.3167</td>
+<td align="left">2018</td>
+<td align="left">55.458</td>
+<td align="left">49.534</td>
+<td align="left">24.00</td>
+<td align="left">707.2175</td>
+<td align="left">20.689</td>
+<td align="left">Yksin asuvat</td>
+<td align="left">203.9958</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2018</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Lapsettomat parit</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">608.5755</td>
+<td align="left">7.0171</td>
+<td align="left">2018</td>
+<td align="left">86.727</td>
+<td align="left">45.060</td>
+<td align="left">11.00</td>
+<td align="left">1350.5882</td>
+<td align="left">13.315</td>
+<td align="left">Lapsiperheet yhteensä</td>
+<td align="left">428.7482</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2018</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Kahden huoltajan perheet</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">549.8144</td>
+<td align="left">6.9304</td>
+<td align="left">2018</td>
+<td align="left">79.333</td>
+<td align="left">41.518</td>
+<td align="left">9.00</td>
+<td align="left">1324.2844</td>
+<td align="left">13.123</td>
+<td align="left">Yhden huoltajan perheet</td>
+<td align="left">376.0311</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2018</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Muut</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">447.9392</td>
+<td align="left">6.8914</td>
+<td align="left">2017</td>
+<td align="left">65.000</td>
+<td align="left">42.946</td>
+<td align="left">52.00</td>
+<td align="left">1043.0344</td>
+<td align="left">18.799</td>
+<td align="left">Yhteensä</td>
+<td align="left">251.8548</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">357.3679</td>
+<td align="left">6.3775</td>
+<td align="left">2017</td>
+<td align="left">56.036</td>
+<td align="left">51.577</td>
+<td align="left">28.00</td>
+<td align="left">692.8789</td>
+<td align="left">22.537</td>
+<td align="left">Yksin asuvat</td>
+<td align="left">201.2125</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2017</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Lapsettomat parit</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">583.4906</td>
+<td align="left">7.3704</td>
+<td align="left">2017</td>
+<td align="left">79.167</td>
+<td align="left">37.411</td>
+<td align="left">18.00</td>
+<td align="left">1559.6767</td>
+<td align="left">15.456</td>
+<td align="left">Lapsiperheet yhteensä</td>
+<td align="left">342.4228</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">716.1500</td>
+<td align="left">7.5384</td>
+<td align="left">2017</td>
+<td align="left">95.000</td>
+<td align="left">41.960</td>
+<td align="left">6.00</td>
+<td align="left">1706.7617</td>
+<td align="left">16.536</td>
+<td align="left">Kahden huoltajan perheet</td>
+<td align="left">433.9167</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">517.1608</td>
+<td align="left">7.2499</td>
+<td align="left">2017</td>
+<td align="left">71.333</td>
+<td align="left">34.799</td>
+<td align="left">12.00</td>
+<td align="left">1486.1342</td>
+<td align="left">14.836</td>
+<td align="left">Yhden huoltajan perheet</td>
+<td align="left">296.6758</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2017</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Muut</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">423.4747</td>
+<td align="left">6.4390</td>
+<td align="left">2016</td>
+<td align="left">65.767</td>
+<td align="left">35.753</td>
+<td align="left">43.00</td>
+<td align="left">1184.4426</td>
+<td align="left">16.060</td>
+<td align="left">Yhteensä</td>
+<td align="left">233.2491</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">334.7079</td>
+<td align="left">5.8721</td>
+<td align="left">2016</td>
+<td align="left">57.000</td>
+<td align="left">44.965</td>
+<td align="left">19.00</td>
+<td align="left">744.3674</td>
+<td align="left">18.686</td>
+<td align="left">Yksin asuvat</td>
+<td align="left">195.6126</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2016</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Lapsettomat parit</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">529.8811</td>
+<td align="left">6.8302</td>
+<td align="left">2016</td>
+<td align="left">77.579</td>
+<td align="left">31.234</td>
+<td align="left">19.00</td>
+<td align="left">1696.4737</td>
+<td align="left">14.563</td>
+<td align="left">Lapsiperheet yhteensä</td>
+<td align="left">282.8316</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">558.7633</td>
+<td align="left">6.7456</td>
+<td align="left">2016</td>
+<td align="left">82.833</td>
+<td align="left">35.754</td>
+<td align="left">6.00</td>
+<td align="left">1562.7967</td>
+<td align="left">16.514</td>
+<td align="left">Kahden huoltajan perheet</td>
+<td align="left">300.6833</td>
+</tr>
+<tr class="even">
+<td align="left">Veteli</td>
+<td align="left">516.5508</td>
+<td align="left">6.8732</td>
+<td align="left">2016</td>
+<td align="left">75.154</td>
+<td align="left">29.380</td>
+<td align="left">13.00</td>
+<td align="left">1758.1708</td>
+<td align="left">13.762</td>
+<td align="left">Yhden huoltajan perheet</td>
+<td align="left">274.5923</td>
+</tr>
+<tr class="odd">
+<td align="left">Veteli</td>
+<td align="left">331.5550</td>
+<td align="left">6.2558</td>
+<td align="left">2016</td>
+<td align="left">53.000</td>
+<td align="left">42.310</td>
+<td align="left">4.00</td>
+<td align="left">783.6325</td>
+<td align="left">17.530</td>
+<td align="left">Muut</td>
+<td align="left">194.1850</td>
+</tr>
+</tbody>
+</table>
