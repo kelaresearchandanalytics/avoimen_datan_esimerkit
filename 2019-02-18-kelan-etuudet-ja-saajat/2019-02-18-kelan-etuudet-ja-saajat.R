@@ -36,6 +36,7 @@ library(ckanr)
 library(readr)
 library(knitr)
 library(glue)
+library(hrbrthemes)
 
 #' ## Resurssien lataaminen
 #' 
@@ -75,7 +76,8 @@ dat %>%
   coord_flip() + 
   theme_minimal() +
   geom_text(aes(y = 0), hjust = 0, color = "white") +
-  labs(title = "Esimerkkikuvion esimerkkiotsikko")
+  labs(title = "Esimerkkikuvion esimerkkiotsikko") +
+  theme_ft_rc()
 
 #' ## Datastore-api
 #' 
