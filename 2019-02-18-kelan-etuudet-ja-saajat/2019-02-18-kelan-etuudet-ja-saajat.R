@@ -27,6 +27,7 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
                            message=FALSE, # älä printtaa pakettien viestejä
                            fig.width = 10, # kuvien oletusleveys
                            fig.heigth = 10)) # kuvien oletuskorkeus
+options(scipen = 999)
 
 #+ project_setup
 library(dplyr)
@@ -68,10 +69,10 @@ head(dat)  %>% kable(format = "markdown")
 dat %>% 
   filter(vuosi == 2018,
          etuus == "Lapsilisä") %>% 
-  arrange(desc(saajat)) %>% 
+  arrange(desc(maksetut_etuudet_euroa)) %>% 
   slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, saajat)) %>% 
-  ggplot(aes(x = kunta, y = saajat, label = saajat)) + 
+  mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
+  ggplot(aes(x = kunta, y = maksetut_etuudet_euroa, label = maksetut_etuudet_euroa)) + 
   geom_col() + 
   coord_flip() + 
   theme_minimal() +
