@@ -91,3 +91,4 @@ res <- ckanr::ds_search_sql(sql = glue("SELECT * from \"{resources[[1]]$id}\" WH
 res$records %>% 
   select(-`_full_text`, -`_id`) %>% 
   kable(format = "markdown")
+
