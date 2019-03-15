@@ -1,22 +1,17 @@
 #' ---
-#' title: "Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet"
-#' author: "Markus Kainu"
-#' date: "Päivitetty: **`r Sys.time()`**"
+#' title: ""
+#' author: ""
 #' output:
 #'   md_document:
 #'   variant: markdown_github
 #' ---
 #' 
-#'  | pvm         | data        | tekijä   |
-#'  | ---------   | -------     | -------- |
-#'  | 2019-02-19  | [Opintotuen saajat ja maksetut tuet](https://beta.avoindata.fi/data/fi/dataset/opintotuen-saajat-ja-maksetut-tuet) | Markus Kainu |
 #' 
 #' 
-#' # Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-03-06-opintotuen-saajat-ja-maksetut-tuet/2019-03-06-opintotuen-saajat-ja-maksetut-tuet.R", 
-                  output_file = "./2019-03-06-opintotuen-saajat-ja-maksetut-tuet.md")
+rmarkdown::render(input = "./2019-03-15-terveyspuntarin-sairastavuusindeksi/esimerkki_R.R", 
+                  output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -29,6 +24,20 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
                            fig.heigth = 10)) # kuvien oletuskorkeus
 options(scipen = 999)
 
+#+ metaboksi, echo = FALSE
+library(ckanr)
+library(dplyr)
+library(knitr)
+library(glue)
+ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:terveyspuntari")
+tibble(
+  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
+  julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
+  ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
+) %>% 
+  kable(format = "markdown", escape = TRUE)
+
 #+ project_setup
 library(dplyr)
 library(ggplot2)
@@ -39,11 +48,13 @@ library(knitr)
 library(glue)
 library(hrbrthemes)
 
+
+
 #' ## Resurssien lataaminen
 #' 
 #+ setup
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:opintotuen")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:terveyspuntari")
 resources <- x$results[[1]]$resources
 dat <- read_csv2(resources[[1]]$url) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
@@ -67,12 +78,12 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(vuosi == 2018,
-         etuus == "Opintoraha") %>% 
-  arrange(desc(maksetut_etuudet_euroa)) %>% 
+  filter(vuosi == 2017,
+         indeksi == "-kuolleisuusindeksi") %>% 
+  arrange(desc(indeksin_arvo)) %>% 
   slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
-  ggplot(aes(x = kunta, y = maksetut_etuudet_euroa, label = maksetut_etuudet_euroa)) + 
+  mutate(kunta = forcats::fct_reorder(kunta, indeksin_arvo)) %>% 
+  ggplot(aes(x = kunta, y = indeksin_arvo, label = indeksin_arvo)) + 
   geom_col() + 
   coord_flip() + 
   theme_minimal() +

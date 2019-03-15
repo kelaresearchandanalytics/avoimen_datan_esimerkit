@@ -1,22 +1,22 @@
+Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
+=====================================================
+
 <table>
 <thead>
 <tr class="header">
-<th>pvm</th>
-<th>data</th>
-<th>tekijä</th>
+<th style="text-align: left;">data</th>
+<th style="text-align: left;">julkaistu</th>
+<th style="text-align: left;">ylläpitäjä</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2019-02-19</td>
-<td><a href="https://beta.avoindata.fi/data/fi/dataset/opintotuen-saajat-ja-maksetut-tuet">Opintotuen saajat ja maksetut tuet</a></td>
-<td>Markus Kainu</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/opintotuen-saajat-ja-maksetut-tuet'>Opintotuen saajat ja maksetut tuet</a></td>
+<td style="text-align: left;">2019-03-15</td>
+<td style="text-align: left;"><a href='mailto:markus.kainu@kela.fi'>Markus Kainu</a></td>
 </tr>
 </tbody>
 </table>
-
-Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
-=====================================================
 
     library(dplyr)
     library(ggplot2)
@@ -52,7 +52,7 @@ Keskimääräiseen opintotukeen (euroa/saaja) on tilastoitu ainoastaan
 säännöllisesti maksetut tuet ja opintolainan valtiontakauksen euromäärä.
 Opintotuen saajat ja maksetut etuudet tilastoidaan kalenterivuosittain,
 lukuvuosittain ja kuukausittain. Lukuvuosi alkaa elokuun alussa ja
-päättyy seuraavan vuoden heinäkuun lopussa.Oppilaitosaste määräytyy
+päättyy seuraavan vuoden heinäkuun lopussa. Oppilaitosaste määräytyy
 etuuden maksutapahtumaan liittyvän oppilaitosnumeron perusteella.
 Oletusarvoisesti opintotuen saaja tilastoituu tilastointijakson
 viimeisimmän maksutapahtuman mukaiseen oppilaitosasteeseen. Valinnalla
@@ -198,7 +198,7 @@ Kuvio
       labs(title = "Esimerkkikuvion esimerkkiotsikko") +
       theme_ft_rc()
 
-![](2019-03-06-opintotuen-saajat-ja-maksetut-tuet_files/figure-markdown_strict/kuva1-1.png)
+![](esimerkki_R_files/figure-markdown_strict/kuva1-1.png)
 
 Datastore-api
 -------------

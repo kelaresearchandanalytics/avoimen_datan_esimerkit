@@ -1,22 +1,19 @@
 <table>
 <thead>
 <tr class="header">
-<th>pvm</th>
-<th>data</th>
-<th>tekijä</th>
+<th style="text-align: left;">data</th>
+<th style="text-align: left;">julkaistu</th>
+<th style="text-align: left;">ylläpitäjä</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2019-02-27</td>
-<td><a href="https://beta.avoindata.fi/data/fi/dataset/lastenhoidon-tukien-saajat-ja-maksetut-tuet">Lastenhoidon tukien saajat ja maksetut tuet</a></td>
-<td>Markus Kainu</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/lastenhoidon-tukien-saajat-ja-maksetut-tuet'>Lastenhoidon tukien saajat ja maksetut tuet</a></td>
+<td style="text-align: left;">2019-02-27</td>
+<td style="text-align: left;"><a href='mailto:markus.kainu@kela.fi'>Markus Kainu</a></td>
 </tr>
 </tbody>
 </table>
-
-Käyttöesimerkkejä: Kelan Lastenhoidon tukien saajat ja maksetut tuet
-====================================================================
 
     library(dplyr)
     library(ggplot2)
@@ -43,13 +40,15 @@ Datan ja metadatan kuvailu
 
     meta$description %>% cat()
 
-Lastenhoidon tukien saajat ja maksetut tuet. Lorem ipsum dolor sit amet,
-consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et
-dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure
-reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa
-qui officia deserunt mollit anim id est laborum.
+Lastenhoidon tukia tilastointiajanjakson aikana saaneet perheet ja
+lapset, joista tukia on maksettu, maksetut tuet, keskimääräinen tuki
+sekä yksityisen päivähoidon tuottajan perimä hoitomaksu kuukaudessa.
+Lakisääteisten tukien lisäksi raportilta saa tiedot kuntien Kelan kautta
+maksamista kuntalisistä. Aluetiedot voi valita raportille joko tuen
+saajan asuinkunnan tai tuen maksaneen kunnan mukaan.Lastenhoidon tuilla
+tarkoitetaan taloudellista tukea lasten hoidon järjestämiseksi.
+Tukimuotoja ovat kotihoidon tuki, yksityisen hoidon tuki, osittainen
+hoitoraha ja joustava hoitoraha.
 
 **Datan muuttujatieto**
 
@@ -266,7 +265,7 @@ Kuvio
       labs(title = "Esimerkkikuvion esimerkkiotsikko") +
       theme_ft_rc()
 
-![](2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet_files/figure-markdown_strict/kuva1-1.png)
+![](esimerkki_R_files/figure-markdown_strict/kuva1-1.png)
 
 Datastore-api
 -------------

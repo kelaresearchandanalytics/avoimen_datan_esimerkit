@@ -1,22 +1,18 @@
 #' ---
-#' title: "Käyttöesimerkkejä: Kelan Lastenhoidon tukien saajat ja maksetut tuet"
-#' author: "Markus Kainu"
-#' date: "Päivitetty: **`r Sys.time()`**"
+#' title: ""
+#' author: ""
 #' output:
 #'   md_document:
 #'   variant: markdown_github
 #' ---
 #' 
-#'  | pvm         | data        | tekijä   |
-#'  | ---------   | -------     | -------- |
-#'  | 2019-02-27  | [Lastenhoidon tukien saajat ja maksetut tuet](https://beta.avoindata.fi/data/fi/dataset/lastenhoidon-tukien-saajat-ja-maksetut-tuet) | Markus Kainu |
 #' 
 #' 
-#' # Käyttöesimerkkejä: Kelan Lastenhoidon tukien saajat ja maksetut tuet
+#' 
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet/2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet.R", 
-                  output_file = "./2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet.md")
+rmarkdown::render(input = "./2019-03-06-opintotuen-saajat-ja-maksetut-tuet/esimerkki_R.R", 
+                  output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -27,6 +23,21 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
                            message=FALSE, # älä printtaa pakettien viestejä
                            fig.width = 10, # kuvien oletusleveys
                            fig.heigth = 10)) # kuvien oletuskorkeus
+options(scipen = 999)
+
+#+ metaboksi, echo = FALSE
+library(ckanr)
+library(dplyr)
+library(knitr)
+library(glue)
+ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:opintotuen")
+tibble(
+  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
+  julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
+  ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
+) %>% 
+  kable(format = "markdown", escape = TRUE)
 
 #+ project_setup
 library(dplyr)
@@ -42,7 +53,7 @@ library(hrbrthemes)
 #' 
 #+ setup
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:lastenhoidon")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:opintotuen")
 resources <- x$results[[1]]$resources
 dat <- read_csv2(resources[[1]]$url) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
@@ -67,11 +78,11 @@ head(dat)  %>% kable(format = "markdown")
 #+ kuva1
 dat %>% 
   filter(vuosi == 2018,
-         tukimuoto == "Kotihoidon tuki") %>% 
-  arrange(desc(tuki_per_saaja_e_kk)) %>% 
+         etuus == "Opintoraha") %>% 
+  arrange(desc(maksetut_etuudet_euroa)) %>% 
   slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, tuki_per_saaja_e_kk)) %>% 
-  ggplot(aes(x = kunta, y = tuki_per_saaja_e_kk, label = round(tuki_per_saaja_e_kk,1))) + 
+  mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
+  ggplot(aes(x = kunta, y = maksetut_etuudet_euroa, label = maksetut_etuudet_euroa)) + 
   geom_col() + 
   coord_flip() + 
   theme_minimal() +
