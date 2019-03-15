@@ -63,7 +63,7 @@ dat %>%
   mutate(
     Julkaistu = substr(package_created, start = 1, stop = 10),
     Data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{package_name}'>{package_title}</a>"),
-    Käyttöesimerkki = glue("<a href='{Julkaistu}-{package_name}/esimerkki_R.md'>R</a>")
+    Käyttöesimerkki = glue("<a href='{Julkaistu}-{package_name}/esimerkki_R.md'>R</a>/<a href='{Julkaistu}-{package_name}/esimerkki_python.ipynb'>Python</a>")
   ) %>% 
     select(Julkaistu,Data,Käyttöesimerkki) %>% 
     kable(format = "markdown", escape = TRUE)
