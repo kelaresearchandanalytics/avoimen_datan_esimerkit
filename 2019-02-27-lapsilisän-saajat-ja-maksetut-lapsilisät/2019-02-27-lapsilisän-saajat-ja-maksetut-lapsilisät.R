@@ -1,5 +1,5 @@
 #' ---
-#' title: "Käyttöesimerkkejä: Lapsilisän saajat ja maksetut lapsilisät kunnittain vuositasolla tuen saajan kotikunnan mukaan vuosina 2014-2018"
+#' title: "Käyttöesimerkkejä: Lapsilisän saajat ja maksetut lapsilisät"
 #' author: "Markus Koinu"
 #' date: "Päivitetty: **`r Sys.time()`**"
 #' output:
@@ -9,7 +9,7 @@
 #' 
 #'  | pvm         | data        | tekijä   |
 #'  | ---------   | -------     | -------- |
-#'  | 2019-02-27  | [Lastenhoidon tukien saajat ja maksetut tuet ](https://beta.avoindata.fi/data/fi/dataset/lastenhoidon-tukien-saajat-ja-maksetut-tuet) | Markus Kainu |
+#'  | 2019-02-27  | [Lapsilisän saajat ja maksetut lapsilisät ](https://beta.avoindata.fi/data/fi/dataset/lapsilisan-saajat-ja-maksetut-lapsilisat) | Markus Kainu |
 #' 
 #' # Käyttöesimerkkejä: Lapsilisän saajat ja maksetut lapsilisät
 #' 
@@ -41,7 +41,7 @@ library(glue)
 #' 
 #+ setup
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:lapsilis")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:lapsilisän saajat")
 resources <- x$results[[1]]$resources
 
 dat <- readr::read_csv2(resources[[1]]$url) # data
