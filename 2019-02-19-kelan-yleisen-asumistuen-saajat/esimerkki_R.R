@@ -9,8 +9,8 @@
 #' 
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-19-kelan-yleisen-asumistuen-saajat/2019-02-19-kelan-yleisen-asumistuen-saajat.R", 
-                  output_file = "./2019-02-19-kelan-yleisen-asumistuen-saajat.md")
+rmarkdown::render(input = "./2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_R.R", 
+                  output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)

@@ -8,7 +8,6 @@
 #' 
 #' 
 #' 
-#' # Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
 #' 
 #+ include = FALSE, eval = FALSE
 rmarkdown::render(input = "./2019-03-15-yksityisista-sairaanhoitopalveluista-perityt-keskimaaraiset-maksut/esimerkki_R.R", 

@@ -1,21 +1,17 @@
 #' ---
-#' title: "Käyttöesimerkkejä: Lapsilisän saajat ja maksetut lapsilisät"
-#' author: "Markus Koinu"
-#' date: "Päivitetty: **`r Sys.time()`**"
+#' title: ""
+#' author: ""
 #' output:
 #'   md_document:
 #'   variant: markdown_github
 #' ---
 #' 
-#'  | pvm         | data        | tekijä   |
-#'  | ---------   | -------     | -------- |
-#'  | 2019-02-27  | [Lapsilisän saajat ja maksetut lapsilisät ](https://beta.avoindata.fi/data/fi/dataset/lapsilisan-saajat-ja-maksetut-lapsilisat) | Markus Kainu |
 #' 
-#' # Käyttöesimerkkejä: Lapsilisän saajat ja maksetut lapsilisät
+#' 
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-27-lapsilisän-saajat-ja-maksetut-lapsilisät/2019-02-27-lapsilisän-saajat-ja-maksetut-lapsilisät.R", 
-                  output_file = "./2019-02-27-lapsilisän-saajat-ja-maksetut-lapsilisät.md")
+rmarkdown::render(input = "./2019-02-27-lapsilisän-saajat-ja-maksetut-lapsilisät/esimerkki_R.R", 
+                  output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -26,6 +22,21 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
                            message=FALSE, # älä printtaa pakettien viestejä
                            fig.width = 10, # kuvien oletusleveys
                            fig.heigth = 10)) # kuvien oletuskorkeus
+options(scipen = 999)
+
+#+ metaboksi, echo = FALSE
+library(ckanr)
+library(dplyr)
+library(knitr)
+library(glue)
+ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:lapsilisän saajat")
+tibble(
+  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
+  julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
+  ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
+) %>% 
+  kable(format = "markdown", escape = TRUE)
 
 #+ project_setup
 # CRAN-paketit

@@ -1,22 +1,19 @@
 <table>
 <thead>
 <tr class="header">
-<th>pvm</th>
-<th>data</th>
-<th>tekijä</th>
+<th style="text-align: left;">data</th>
+<th style="text-align: left;">julkaistu</th>
+<th style="text-align: left;">ylläpitäjä</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2019-02-27</td>
-<td><a href="https://beta.avoindata.fi/data/fi/dataset/lastenhoidon-tukien-saajat-ja-maksetut-tuet">Lastenhoidon tukien saajat ja maksetut tuet</a></td>
-<td>Markus Kainu</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/lapsilisan-saajat-ja-maksetut-lapsilisat'>Lapsilisän saajat ja maksetut lapsilisät</a></td>
+<td style="text-align: left;">2019-02-27</td>
+<td style="text-align: left;"><a href='mailto:markus.kainu@kela.fi'>Markus Kainu</a></td>
 </tr>
 </tbody>
 </table>
-
-Käyttöesimerkkejä: Lapsilisän saajat ja maksetut lapsilisät
-===========================================================
 
     # CRAN-paketit
     library(dplyr)
@@ -31,7 +28,7 @@ Resurssien lataaminen
 ---------------------
 
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-    x <- package_search(q = "Kansaneläkelaitos", fq = "title:lapsilis")
+    x <- package_search(q = "Kansaneläkelaitos", fq = "title:lapsilisän saajat")
     resources <- x$results[[1]]$resources
 
     dat <- readr::read_csv2(resources[[1]]$url) # data
@@ -44,12 +41,14 @@ Resurssien kuvailu
 
     meta$description %>% cat()
 
-Lapsilisän saajat ja maksetut lapsilisät. et dolore magna aliqua. Ut
-enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquid ex ea commodi consequat. Quis aute iure reprehenderit in
-voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
+Raportilla on tiedot lapsilisää saaneiden perheiden ja lasten määrästä
+sekä maksetuista lapsilisistä. Tiedot saadaan muun muassa perhetyypin ja
+perheen lapsiluvun mukaan. Tieto yksinhuoltajuudesta perustuu siihen,
+onko saajalle maksettu yksinhuoltajakorotus. Lapsilisä on yksi
+lakisääteisistä etuuksista, joilla yhteiskunta pyrkii tasaamaan lapsen
+perheille aiheuttamia kustannuksia. Lapsilisää maksetaan jokaisesta
+Suomessa asuvasta alle 17-vuotiaasta lapsesta. Se maksetaan lapsen
+vanhemmalle tai huoltajalle.
 
 **Datan muuttujatieto**
 
@@ -225,7 +224,7 @@ Kuvio
       theme(legend.position = "none") +
       labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
-![](2019-02-27-lapsilisän-saajat-ja-maksetut-lapsilisät_files/figure-markdown_strict/kuva1-1.png)
+![](esimerkki_R_files/figure-markdown_strict/kuva1-1.png)
 
 Datastore-api
 -------------
