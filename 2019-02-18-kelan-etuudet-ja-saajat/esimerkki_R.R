@@ -1,22 +1,16 @@
 #' ---
-#' title: "Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät"
-#' author: "Markus Kainu"
-#' date: "Päivitetty: **`r Sys.time()`**"
+#' title: ""
+#' author: ""
 #' output:
 #'   md_document:
 #'   variant: markdown_github
 #' ---
 #' 
-#'  | pvm         | data        | tekijä   |
-#'  | ---------   | -------     | -------- |
-#'  | 2019-02-19  | [Kelan etuuksien saajat ja etuusmäärät](https://beta.avoindata.fi/data/fi/dataset/kelan-etuudet-ja-saajat) | Markus Kainu |
 #' 
-#' 
-#' # Käyttöesimerkkejä: Kelan etuuksien saajat ja etuusmäärät
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-18-kelan-etuudet-ja-saajat/2019-02-18-kelan-etuudet-ja-saajat.R", 
-                  output_file = "./2019-02-18-kelan-etuudet-ja-saajat.md")
+rmarkdown::render(input = "./2019-02-18-kelan-etuudet-ja-saajat/esimerkki_R.R", 
+                  output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -38,6 +32,16 @@ library(readr)
 library(knitr)
 library(glue)
 library(hrbrthemes)
+
+#+ meta, echo = FALSE
+ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
+tibble(
+  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
+  julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
+  ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
+) %>% 
+  kable(format = "markdown", escape = TRUE)
 
 #' ## Resurssien lataaminen
 #' 

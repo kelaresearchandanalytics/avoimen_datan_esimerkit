@@ -70,9 +70,7 @@ dat %>%
 ```
 
 
-
-
-
+***
 
 - (C) Markus Kainu & Co 2019
 - Lisenssi: CC-BY 4.0
