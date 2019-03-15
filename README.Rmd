@@ -1,0 +1,79 @@
+---
+title: ""
+author: ""
+output:
+  md_document:
+  variant: markdown_github
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+# Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
+
+```{r, include = FALSE, eval = FALSE}
+rmarkdown::render(input = "./README.Rmd", 
+                  output_file = "./README.md")
+```
+
+```{r project_setup, include = FALSE}
+library(dplyr)
+library(ggplot2)
+library(jsonlite)
+library(ckanr)
+library(readr)
+library(knitr)
+library(glue)
+library(hrbrthemes)
+```
+
+Avoimen datan käyttöesimerkit
+=========================================
+
+Tässä projektissa on käyttöesimerkkejä R (ja Python) kielillä Kelan avoimen datan hyödytämiseen.
+
+Lähdekoodit ja käännetyt esimerkit `.md`-muodossa löytyvät kunkin datan nimen ja julkaisupäivämäärän mukaisista kansiosta. Linkit esimerkkeihin myös alla.
+
+
+```{r, echo = FALSE}
+ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+
+org <- ckanr::organization_show(id = "585d86c0-f642-482c-852a-9cfb6312a5eb", 
+                                include_datasets = TRUE)
+# listaa paketit, resurssit ja niiden id:t
+pacs <- org$packages
+pacs_list <- list()
+for(i in 1:length(pacs)){
+  
+  pac_id <- pacs[[i]]$id
+  pac_temp <- tibble(
+    
+    package_id = pac_id,
+    package_title = pacs[[i]]$title,
+    package_name = pacs[[i]]$name,
+    package_maintainer = pacs[[i]]$maintainer,
+    package_created = pacs[[i]]$metadata_created
+  )
+  pacs_list[[i]] <- pac_temp
+}
+dat <- do.call(bind_rows, pacs_list)
+
+dat %>% 
+  mutate(
+    Julkaistu = substr(package_created, start = 1, stop = 10),
+    Data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{package_name}'>{package_title}</a>"),
+    Käyttöesimerkki = glue("<a href='{Julkaistu}-{package_name}/esimerkki_R.md'>R</a>")
+  ) %>% 
+    select(Julkaistu,Data,Käyttöesimerkki) %>% 
+    kable(format = "markdown", escape = TRUE)
+```
+
+
+
+
+
+
+- (C) Markus Kainu & Co 2019
+- Lisenssi: CC-BY 4.0
+
