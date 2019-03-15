@@ -1,27 +1,19 @@
 <table>
-<colgroup>
-<col style="width: 37%" />
-<col style="width: 29%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>pvm</th>
-<th>data</th>
-<th>tekijä</th>
+<th style="text-align: left;">data</th>
+<th style="text-align: left;">julkaistu</th>
+<th style="text-align: left;">ylläpitäjä</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2019-02-19</td>
-<td><a href="https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat">Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot</a></td>
-<td>Markus Kainu</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat'>Yleisen asumistuen saajat</a></td>
+<td style="text-align: left;">2019-02-19</td>
+<td style="text-align: left;"><a href='mailto:markus.kainu@kela.fi'>Markus Kainu</a></td>
 </tr>
 </tbody>
 </table>
-
-Käyttöesimerkkejä: Yleisen asumistuen saajaruokakunnat, keskimääräiset tuet, asumismenot ja ruokakunnan tulot
-=============================================================================================================
 
     # CRAN-paketit
     library(dplyr)
@@ -289,7 +281,7 @@ Kuvio
       theme(legend.position = "none") +
       labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
-![](2019-02-19-kelan-yleisen-asumistuen-saajat_files/figure-markdown_strict/kuva1-1.png)
+![](esimerkki_R_files/figure-markdown_strict/kuva1-1.png)
 
 Datastore-api
 -------------

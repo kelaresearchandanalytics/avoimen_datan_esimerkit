@@ -25,6 +25,20 @@ knitr::opts_chunk$set(list(echo=TRUE, # printtaa koodi outputtiin
                            fig.heigth = 10)) # kuvien oletuskorkeus
 options(scipen = 999)
 
+#+ metaboksi, echo = FALSE
+library(ckanr)
+library(dplyr)
+library(knitr)
+library(glue)
+ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:yksityisistä sairaanhoito")
+tibble(
+  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
+  julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
+  ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
+) %>% 
+  kable(format = "markdown", escape = TRUE)
+
 #+ project_setup
 library(dplyr)
 library(ggplot2)
@@ -35,15 +49,6 @@ library(knitr)
 library(glue)
 library(hrbrthemes)
 
-#+ meta, echo = FALSE
-ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:yksityisistä sairaanhoito")
-tibble(
-  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
-  julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
-  ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
-) %>% 
-  kable(format = "markdown", escape = TRUE)
 
 
 #' ## Resurssien lataaminen

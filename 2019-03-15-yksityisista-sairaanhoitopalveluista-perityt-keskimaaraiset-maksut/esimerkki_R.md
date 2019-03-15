@@ -1,6 +1,28 @@
 Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
 =====================================================
 
+<table>
+<colgroup>
+<col style="width: 74%" />
+<col style="width: 4%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">data</th>
+<th style="text-align: left;">julkaistu</th>
+<th style="text-align: left;">ylläpitäjä</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/yksityisista-sairaanhoitopalveluista-perityt-keskimaaraiset-maksut'>Yksityisistä sairaanhoitopalveluista perityt keskimääräiset maksut</a></td>
+<td style="text-align: left;">2019-03-15</td>
+<td style="text-align: left;"><a href='mailto:markus.kainu@kela.fi'>Markus Kainu</a></td>
+</tr>
+</tbody>
+</table>
+
     library(dplyr)
     library(ggplot2)
     library(jsonlite)
@@ -14,7 +36,7 @@ Resurssien lataaminen
 ---------------------
 
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-    x <- package_search(q = "Kansaneläkelaitos", fq = "title:opintotuen")
+    x <- package_search(q = "Kansaneläkelaitos", fq = "title:yksityisistä sairaanhoito")
     resources <- x$results[[1]]$resources
     dat <- read_csv2(resources[[1]]$url) # Lataa data
     meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
@@ -26,30 +48,22 @@ Datan ja metadatan kuvailu
 
     meta$description %>% cat()
 
-Raportilla on tiedot opintotuen saajista, maksetuista tuista ja
-keskimääräisistä tuista tilastointijakson aikana. Opintotuen saajia ovat
-opintorahaa, asumislisää tai opintolainan valtiontakauksen saaneet
-henkilöt. Maksettuihin tukiin on tilastoitu säännöllisten tai
-takautuvien maksujen lisäksi myös opintoetuuksien palautukset.
-Keskimääräiseen opintotukeen (euroa/saaja) on tilastoitu ainoastaan
-säännöllisesti maksetut tuet ja opintolainan valtiontakauksen euromäärä.
-Opintotuen saajat ja maksetut etuudet tilastoidaan kalenterivuosittain,
-lukuvuosittain ja kuukausittain. Lukuvuosi alkaa elokuun alussa ja
-päättyy seuraavan vuoden heinäkuun lopussa. Oppilaitosaste määräytyy
-etuuden maksutapahtumaan liittyvän oppilaitosnumeron perusteella.
-Oletusarvoisesti opintotuen saaja tilastoituu tilastointijakson
-viimeisimmän maksutapahtuman mukaiseen oppilaitosasteeseen. Valinnalla
-‘Astetiedon peruste: Kaikki oppilaitokset’ tuen saaja tilastoituu
-kaikkiin tilastointijakson maksutapahtumien mukaisiin
-oppilaitosasteisiin. Yhteissummassa tuen saaja esiintyy kuitenkin vain
-kerran. Oppilaitosasteeseen ‘Ulkomaiset oppilaitokset’ tilastoituvat ne
-opintotuen saajat, jotka suorittavat tutkintoa ulkomaisessa
-oppilaitoksessa. Opintotuen saajan ikä on ikä tilastointijakson lopussa.
-Lukuvuoden tiedoissa ikä on kuitenkin ikä lukuvuoteen sisältyvän
-syyslukukauden lopussa. Opintotuen saajat on tilastoitu saajan
-asuinkunnan perustella. Kunta tilastoituu valitun ajanjakson lopun
-tietojen mukaan. Lukuvuoden tiedoissa aluetieto on kuitenkin lukuvuoteen
-sisältyvän syyslukukauden lopun tieto.
+Raportti sisältää tietoja sairausvakuutuksesta lääkärinpalkkioina,
+hammaslääkärinpalkkioina tai tutkimuksena ja hoitona korvatuista
+yksityisistä sairaanhoitopalveluista perittyjen maksujen keskiarvoista
+toimenpiteittäin. - Tiedot on raportoitu kunnittain ja useiden
+laajempien aluejaottelujen mukaan vuositasolla. - Kunta on palvelusta
+tilastovuonna korvauksen saaneen henkilön asuinkunta vuoden lopussa. -
+Toimenpide on tilastoitu sille vuodelle, jona siitä on maksettu korvaus.
+- Kustannukset on jaoteltu seuraaviin ryhmiin: erikoislääkäri-
+(yleisimmät erikoisalat), yleislääkäri-, hammaslääkärikäynnit, tutkimus
+ja hoito sekä yleisimmät laboratorio- ja röntgentutkimukset. -
+Tarkastelussa ei ole mukana seuraavia alaryhmiä: lääketieteen
+opiskelijat, ulkomaalaiset lääkärit, normaalin vastaanottoajan
+ulkopuolella tehdyt käynnit, kotikäynnit sekä jos yksittäisten
+käyntien/hoitojen lukumäärä on kunnassa vähemmän kuin neljä. -
+Aineistosta on poistettu virheelliset tiedot ennen keskiarvojen
+laskemista.
 
 **Datan muuttujatieto**
 
@@ -65,32 +79,27 @@ sisältyvän syyslukukauden lopun tieto.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">kuntanumero</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">etuus</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">default</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">kunta</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">toimenpide</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">default</td>
+</tr>
 <tr class="even">
-<td style="text-align: left;">saajat</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">maksetut_etuudet_euroa</td>
-<td style="text-align: left;">number</td>
-<td style="text-align: left;">default</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">euroa_per_saaja</td>
+<td style="text-align: left;">hinta_euroa</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
@@ -104,62 +113,55 @@ sisältyvän syyslukukauden lopun tieto.
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: right;">vuosi</th>
-<th style="text-align: left;">etuus</th>
+<th style="text-align: right;">kuntanumero</th>
 <th style="text-align: left;">kunta</th>
-<th style="text-align: right;">saajat</th>
-<th style="text-align: right;">maksetut_etuudet_euroa</th>
-<th style="text-align: right;">euroa_per_saaja</th>
+<th style="text-align: left;">toimenpide</th>
+<th style="text-align: right;">vuosi</th>
+<th style="text-align: right;">hinta_euroa</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">414</td>
-<td style="text-align: right;">432023.7</td>
-<td style="text-align: right;">3674.462</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: left;">Alajärvi</td>
-<td style="text-align: right;">305</td>
-<td style="text-align: right;">327333.5</td>
-<td style="text-align: right;">3024.162</td>
-</tr>
-<tr class="odd">
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 <td style="text-align: right;">2018</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Alavieska</td>
-<td style="text-align: right;">87</td>
-<td style="text-align: right;">118497.8</td>
-<td style="text-align: right;">3919.461</td>
+<td style="text-align: right;">59.24</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Alavus</td>
-<td style="text-align: right;">446</td>
-<td style="text-align: right;">525543.5</td>
-<td style="text-align: right;">3532.726</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">58.66</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Asikkala</td>
-<td style="text-align: right;">246</td>
-<td style="text-align: right;">254567.0</td>
-<td style="text-align: right;">3318.835</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+<td style="text-align: right;">2016</td>
+<td style="text-align: right;">56.30</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Askola</td>
-<td style="text-align: right;">123</td>
-<td style="text-align: right;">88357.4</td>
-<td style="text-align: right;">2812.823</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+<td style="text-align: right;">2015</td>
+<td style="text-align: right;">54.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">52.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">52.62</td>
 </tr>
 </tbody>
 </table>
@@ -168,12 +170,11 @@ Kuvio
 -----
 
     dat %>% 
-      filter(vuosi == 2018,
-             etuus == "Opintoraha") %>% 
-      arrange(desc(maksetut_etuudet_euroa)) %>% 
+      filter(vuosi == 2018) %>% 
+      arrange(desc(hinta_euroa)) %>% 
       slice(1:20) %>% 
-      mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
-      ggplot(aes(x = kunta, y = maksetut_etuudet_euroa, label = maksetut_etuudet_euroa)) + 
+      mutate(kunta = forcats::fct_reorder(kunta, hinta_euroa)) %>% 
+      ggplot(aes(x = kunta, y = hinta_euroa, label = hinta_euroa)) + 
       geom_col() + 
       coord_flip() + 
       theme_minimal() +
@@ -202,165 +203,75 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <thead>
 <tr class="header">
 <th style="text-align: left;">kunta</th>
-<th style="text-align: left;">saajat</th>
+<th style="text-align: left;">kuntanumero</th>
 <th style="text-align: left;">vuosi</th>
-<th style="text-align: left;">euroa_per_saaja</th>
-<th style="text-align: left;">maksetut_etuudet_euroa</th>
-<th style="text-align: left;">etuus</th>
+<th style="text-align: left;">hinta_euroa</th>
+<th style="text-align: left;">toimenpide</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">105</td>
+<td style="text-align: left;">924</td>
 <td style="text-align: left;">2018</td>
-<td style="text-align: left;">3668,8578</td>
-<td style="text-align: left;">124905,60</td>
-<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">69,10</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">103</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">1249,4235</td>
-<td style="text-align: left;">124905,60</td>
-<td style="text-align: left;">Opintoraha ja asumislisä yhteensä</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">103</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">1226,0800</td>
-<td style="text-align: left;">123842,42</td>
-<td style="text-align: left;">Opintoraha</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">583,5875</td>
-<td style="text-align: left;">1063,18</td>
-<td style="text-align: left;">Asumislisä</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">65</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">3891,5385</td>
-<td style="text-align: left;">0,00</td>
-<td style="text-align: left;">Opintolainan valtiontakaus</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">112</td>
+<td style="text-align: left;">924</td>
 <td style="text-align: left;">2017</td>
-<td style="text-align: left;">3318,0358</td>
-<td style="text-align: left;">169205,44</td>
-<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">61,67</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">108</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">1571,8876</td>
-<td style="text-align: left;">169205,44</td>
-<td style="text-align: left;">Opintoraha ja asumislisä yhteensä</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">54,93</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">106</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">1258,3386</td>
-<td style="text-align: left;">133289,75</td>
-<td style="text-align: left;">Opintoraha</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">44</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">819,6914</td>
-<td style="text-align: left;">35915,69</td>
-<td style="text-align: left;">Asumislisä</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">62</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">3227,5806</td>
-<td style="text-align: left;">0,00</td>
-<td style="text-align: left;">Opintolainan valtiontakaus</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">110</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">3439,2971</td>
-<td style="text-align: left;">211221,23</td>
-<td style="text-align: left;">Yhteensä</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">109</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">1982,7769</td>
-<td style="text-align: left;">211221,23</td>
-<td style="text-align: left;">Opintoraha ja asumislisä yhteensä</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">106</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">1326,6456</td>
-<td style="text-align: left;">138596,93</td>
-<td style="text-align: left;">Opintoraha</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">67</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">1126,8396</td>
-<td style="text-align: left;">72624,30</td>
-<td style="text-align: left;">Asumislisä</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">60</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">2703,3333</td>
-<td style="text-align: left;">0,00</td>
-<td style="text-align: left;">Opintolainan valtiontakaus</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">108</td>
+<td style="text-align: left;">924</td>
 <td style="text-align: left;">2015</td>
-<td style="text-align: left;">3471,5003</td>
-<td style="text-align: left;">219354,18</td>
-<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">53,63</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">108</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">2016,3151</td>
-<td style="text-align: left;">219354,18</td>
-<td style="text-align: left;">Opintoraha ja asumislisä yhteensä</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">48,69</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">102</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">1387,2050</td>
-<td style="text-align: left;">142593,08</td>
-<td style="text-align: left;">Opintoraha</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">49,33</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">70</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">1105,3206</td>
-<td style="text-align: left;">76761,10</td>
-<td style="text-align: left;">Asumislisä</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">46,16</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">43,60</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">44,22</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
 </tr>
 </tbody>
 </table>
