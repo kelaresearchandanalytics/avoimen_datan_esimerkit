@@ -26,6 +26,16 @@ myös alla.
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">2019-03-19</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet'>Suomen eläkkeensaajat ja keskimääräiset eläkkeet</a></td>
+<td style="text-align: left;"><a href='2019-03-19-suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet/esimerkki_R.md'>R</a>/<a href='2019-03-19-suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet/esimerkki_python.ipynb'>Python</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2019-02-19</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat'>Yleisen asumistuen saajat</a></td>
+<td style="text-align: left;"><a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_R.md'>R</a>/<a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_python.ipynb'>Python</a></td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">2019-03-15</td>
 <td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/terveyspuntarin-sairastavuusindeksi'>Terveyspuntarin sairastavuusindeksi</a></td>
 <td style="text-align: left;"><a href='2019-03-15-terveyspuntarin-sairastavuusindeksi/esimerkki_R.md'>R</a>/<a href='2019-03-15-terveyspuntarin-sairastavuusindeksi/esimerkki_python.ipynb'>Python</a></td>
@@ -36,14 +46,14 @@ myös alla.
 <td style="text-align: left;"><a href='2019-03-15-yksityisista-sairaanhoitopalveluista-perityt-keskimaaraiset-maksut/esimerkki_R.md'>R</a>/<a href='2019-03-15-yksityisista-sairaanhoitopalveluista-perityt-keskimaaraiset-maksut/esimerkki_python.ipynb'>Python</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2019-02-27</td>
-<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/lapsilisan-saajat-ja-maksetut-lapsilisat'>Lapsilisän saajat ja maksetut lapsilisät</a></td>
-<td style="text-align: left;"><a href='2019-02-27-lapsilisan-saajat-ja-maksetut-lapsilisat/esimerkki_R.md'>R</a>/<a href='2019-02-27-lapsilisan-saajat-ja-maksetut-lapsilisat/esimerkki_python.ipynb'>Python</a></td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">2019-03-15</td>
 <td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/opintotuen-saajat-ja-maksetut-tuet'>Opintotuen saajat ja maksetut tuet</a></td>
 <td style="text-align: left;"><a href='2019-03-15-opintotuen-saajat-ja-maksetut-tuet/esimerkki_R.md'>R</a>/<a href='2019-03-15-opintotuen-saajat-ja-maksetut-tuet/esimerkki_python.ipynb'>Python</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2019-02-27</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/lapsilisan-saajat-ja-maksetut-lapsilisat'>Lapsilisän saajat ja maksetut lapsilisät</a></td>
+<td style="text-align: left;"><a href='2019-02-27-lapsilisan-saajat-ja-maksetut-lapsilisat/esimerkki_R.md'>R</a>/<a href='2019-02-27-lapsilisan-saajat-ja-maksetut-lapsilisat/esimerkki_python.ipynb'>Python</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2019-02-27</td>
@@ -51,11 +61,6 @@ myös alla.
 <td style="text-align: left;"><a href='2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet/esimerkki_R.md'>R</a>/<a href='2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet/esimerkki_python.ipynb'>Python</a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2019-02-19</td>
-<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat'>Yleisen asumistuen saajat</a></td>
-<td style="text-align: left;"><a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_R.md'>R</a>/<a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_python.ipynb'>Python</a></td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">2019-02-19</td>
 <td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-etuudet-ja-saajat'>Kelan etuuksien saajat ja maksetut etuudet</a></td>
 <td style="text-align: left;"><a href='2019-02-19-kelan-etuudet-ja-saajat/esimerkki_R.md'>R</a>/<a href='2019-02-19-kelan-etuudet-ja-saajat/esimerkki_python.ipynb'>Python</a></td>
