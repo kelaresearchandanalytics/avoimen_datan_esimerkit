@@ -1,12 +1,13 @@
 Avoimen datan käyttöesimerkit
 =============================
 
-Tässä projektissa on käyttöesimerkkejä R (ja Python) kielillä Kelan
-avoimen datan hyödytämiseen.
+Tässä projektissa julkaistaan käyttöesimerkkejä R- ja Python-kielillä,
+jotta pääset helpommin alkuun Kelan avoimen datan hyödyntämisessä.
 
-Lähdekoodit ja käännetyt esimerkit `.md`-muodossa löytyvät kunkin datan
-nimen ja julkaisupäivämäärän mukaisista kansiosta. Linkit esimerkkeihin
-myös alla.
+R-kieliset lähdekoodit ja käännetyt esimerkit `.md`-muodossa löytyvät
+kunkin datan nimen ja julkaisupäivämäärän mukaisista kansiosta. Samoissa
+kansioissa on myös Python Jupyter notebookit. Kehitysehdotukset
+issueihin. Pull requesteja otetaan mielellään vastaan!
 
 <table>
 <colgroup>
