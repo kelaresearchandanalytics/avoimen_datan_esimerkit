@@ -22,7 +22,6 @@
     library(readr)
     library(knitr)
     library(glue)
-    library(hrbrthemes)
 
 Resurssien lataaminen
 ---------------------
@@ -191,9 +190,31 @@ Kuvio
       theme_minimal() +
       geom_text(aes(y = 0), hjust = 0, color = "white") +
       labs(title = "Esimerkkikuvion esimerkkiotsikko") +
-      theme_ft_rc()
+      theme_light()
 
 ![](esimerkki_R_files/figure-markdown_strict/kuva1-1.png)
+
+Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
+---------------------------------------------------------
+
+    library(pxweb)
+    tk_avainluvut <- 
+      get_pxweb_data(url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/Kuntien_avainluvut/2018/kuntien_avainluvut_2018_viimeisin.px",
+                     dims = list("Alue 2018" = c('*'),
+                                 Tiedot = c('*')),
+                     clean = FALSE)
+    df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
+    # Piirretään hajontakuvio
+    df2 <- df %>% 
+      filter(vuosi == 2017,
+             indeksi == "-kuolleisuusindeksi") 
+
+    ggplot(df2, aes(x = `Yli 64-vuotiaiden osuus väestöstä, %, 2017`, y = indeksin_arvo, size = `Väkiluku, 2017`)) + 
+      geom_point(alpha = .3) +
+      labs(y = "Kuolleisuusindeksi") + 
+      theme_light()
+
+![](esimerkki_R_files/figure-markdown_strict/join-1.png)
 
 Datastore-api
 -------------
