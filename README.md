@@ -1,9 +1,7 @@
 Avoimen datan käyttöesimerkit
 =============================
 
-<span class="closebtn"
-onclick="this.parentElement.style.display='none';">×</span> Toistaiseksi
-testikäytössä!
+**TOISTAISEKSI TESTIKÄYTÖSSÄ!!**
 
 Tässä projektissa julkaistaan käyttöesimerkkejä R- ja Python-kielillä,
 jotta pääset helpommin alkuun Kelan avoimen datan hyödyntämisessä.

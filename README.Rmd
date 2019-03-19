@@ -29,10 +29,7 @@ library(hrbrthemes)
 Avoimen datan käyttöesimerkit
 =========================================
 
-<div class="alert">
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-  Toistaiseksi testikäytössä!
-</div> 
+**TOISTAISEKSI TESTIKÄYTÖSSÄ!!**
 
 Tässä projektissa julkaistaan käyttöesimerkkejä R- ja Python-kielillä, jotta pääset helpommin alkuun Kelan avoimen datan hyödyntämisessä.
 
