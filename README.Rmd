@@ -29,6 +29,11 @@ library(hrbrthemes)
 Avoimen datan käyttöesimerkit
 =========================================
 
+ <div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  Toistaiseksi testikäytössä!
+</div> 
+
 Tässä projektissa julkaistaan käyttöesimerkkejä R- ja Python-kielillä, jotta pääset helpommin alkuun Kelan avoimen datan hyödyntämisessä.
 
 R-kieliset lähdekoodit ja käännetyt esimerkit `.md`-muodossa löytyvät kunkin datan nimen ja julkaisupäivämäärän mukaisista kansiosta. Samoissa kansioissa on myös Python Jupyter notebookit. Kehitysehdotukset issueihin. Pull requesteja otetaan mielellään vastaan!
