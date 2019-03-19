@@ -10,8 +10,6 @@ editor_options:
 
 
 
-# Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
-
 ```{r, include = FALSE, eval = FALSE}
 rmarkdown::render(input = "./README.Rmd", 
                   output_file = "./README.md")

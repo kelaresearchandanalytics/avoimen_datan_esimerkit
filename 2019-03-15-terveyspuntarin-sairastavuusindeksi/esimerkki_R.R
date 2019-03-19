@@ -10,7 +10,7 @@
 #' 
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-03-15-terveyspuntarin-sairastavuusindeksi/esimerkki_R.R", 
+rmarkdown::render(input = "./2019-03-19-suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet/esimerkki_R.R", 
                   output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F

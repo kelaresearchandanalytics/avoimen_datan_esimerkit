@@ -1,6 +1,3 @@
-Käyttöesimerkkejä: Opintotuen saajat ja maksetut tuet
-=====================================================
-
 Avoimen datan käyttöesimerkit
 =============================
 
