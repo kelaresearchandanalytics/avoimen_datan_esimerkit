@@ -17,13 +17,11 @@ rmarkdown::render(input = "./README.Rmd",
 
 ```{r project_setup, include = FALSE}
 library(dplyr)
-library(ggplot2)
 library(jsonlite)
 library(ckanr)
 library(readr)
 library(knitr)
 library(glue)
-library(hrbrthemes)
 ```
 
 Avoimen datan käyttöesimerkit

@@ -9,8 +9,7 @@
 #' 
 #' 
 #+ include = FALSE, eval = FALSE
-rmarkdown::render(input = "./2019-02-18-kelan-etuudet-ja-saajat/esimerkki_R.R", 
-                  output_file = "./esimerkki_R.md")
+#rmarkdown::render(input = "./2019-02-19-kelan-etuudet-ja-saajat/esimerkki_R.R", output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -46,7 +45,7 @@ library(ckanr)
 library(readr)
 library(knitr)
 library(glue)
-library(hrbrthemes)
+library(pxweb)
 
 
 #' ## Resurssien lataaminen
@@ -87,8 +86,29 @@ dat %>%
   coord_flip() + 
   theme_minimal() +
   geom_text(aes(y = 0), hjust = 0, color = "white") +
-  labs(title = "Esimerkkikuvion esimerkkiotsikko") +
-  theme_ft_rc()
+  labs(title = "Esimerkkikuvion esimerkkiotsikko")
+
+
+#' 
+#' ## Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
+#' 
+#+ join
+tk_avainluvut <- 
+  get_pxweb_data(url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/Kuntien_avainluvut/2018/kuntien_avainluvut_2018_viimeisin.px",
+                 dims = list("Alue 2018" = c('*'),
+                             Tiedot = c('*')),
+                 clean = FALSE)
+df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
+# Piirretään hajontakuvio
+df2 <- df %>% 
+  filter(vuosi == 2016,
+         etuus == "Lapsilisä")
+
+ggplot(df2, aes(x = `Alle 15-vuotiaiden osuus väestöstä, %, 2017`, y = euroa_per_saaja, size = `Väkiluku, 2017`)) + 
+  geom_point(alpha = .3) +
+  labs(y = "Lapsilisä - euroa_per_saaja") + 
+  theme_light()
+
 
 #' ## Datastore-api
 #' 

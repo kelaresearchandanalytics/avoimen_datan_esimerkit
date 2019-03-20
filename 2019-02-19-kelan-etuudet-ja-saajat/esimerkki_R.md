@@ -1,12 +1,3 @@
-    library(dplyr)
-    library(ggplot2)
-    library(jsonlite)
-    library(ckanr)
-    library(readr)
-    library(knitr)
-    library(glue)
-    library(hrbrthemes)
-
 <table>
 <thead>
 <tr class="header">
@@ -23,6 +14,15 @@
 </tr>
 </tbody>
 </table>
+
+    library(dplyr)
+    library(ggplot2)
+    library(jsonlite)
+    library(ckanr)
+    library(readr)
+    library(knitr)
+    library(glue)
+    library(pxweb)
 
 Resurssien lataaminen
 ---------------------
@@ -218,10 +218,30 @@ Kuvio
       coord_flip() + 
       theme_minimal() +
       geom_text(aes(y = 0), hjust = 0, color = "white") +
-      labs(title = "Esimerkkikuvion esimerkkiotsikko") +
-      theme_ft_rc()
+      labs(title = "Esimerkkikuvion esimerkkiotsikko")
 
 ![](esimerkki_R_files/figure-markdown_strict/kuva1-1.png)
+
+Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
+---------------------------------------------------------
+
+    tk_avainluvut <- 
+      get_pxweb_data(url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/Kuntien_avainluvut/2018/kuntien_avainluvut_2018_viimeisin.px",
+                     dims = list("Alue 2018" = c('*'),
+                                 Tiedot = c('*')),
+                     clean = FALSE)
+    df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
+    # Piirretään hajontakuvio
+    df2 <- df %>% 
+      filter(vuosi == 2016,
+             etuus == "Lapsilisä")
+
+    ggplot(df2, aes(x = `Alle 15-vuotiaiden osuus väestöstä, %, 2017`, y = euroa_per_saaja, size = `Väkiluku, 2017`)) + 
+      geom_point(alpha = .3) +
+      labs(y = "Lapsilisä - euroa_per_saaja") + 
+      theme_light()
+
+![](esimerkki_R_files/figure-markdown_strict/join-1.png)
 
 Datastore-api
 -------------
@@ -482,8 +502,8 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">3334,30</td>
-<td style="text-align: left;">Eläketuki</td>
+<td style="text-align: left;">3169924,79</td>
+<td style="text-align: left;">Eläke-etuudet (pl. takuueläke)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
@@ -491,8 +511,8 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">3169924,79</td>
-<td style="text-align: left;">Eläke-etuudet (pl. takuueläke)</td>
+<td style="text-align: left;">3334,30</td>
+<td style="text-align: left;">Eläketuki</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
@@ -1092,21 +1112,12 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2012</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Opintolainan korkoavustus</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2012</td>
 <td style="text-align: left;">865,0768</td>
 <td style="text-align: left;">97</td>
 <td style="text-align: left;">83912,45</td>
 <td style="text-align: left;">Koulumatkatuki</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2012</td>
@@ -1115,7 +1126,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">222317,08</td>
 <td style="text-align: left;">Kuntoutus</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2012</td>
@@ -1124,7 +1135,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">57091,34</td>
 <td style="text-align: left;">Kuntoutusraha</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2012</td>
@@ -1133,7 +1144,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">886345,33</td>
 <td style="text-align: left;">Lapsilisä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2012</td>
@@ -1141,6 +1152,15 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">91</td>
 <td style="text-align: left;">218581,53</td>
 <td style="text-align: left;">Lastenhoidon tuet</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Opintolainan korkoavustus</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
@@ -1470,12 +1490,21 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2014</td>
+<td style="text-align: left;">2824,4788</td>
+<td style="text-align: left;">74</td>
+<td style="text-align: left;">209011,43</td>
+<td style="text-align: left;">Kuntoutus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">2014</td>
 <td style="text-align: left;">456,4089</td>
 <td style="text-align: left;">9</td>
 <td style="text-align: left;">4107,68</td>
 <td style="text-align: left;">Erityishoitoraha</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2014</td>
@@ -1483,15 +1512,6 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">84</td>
 <td style="text-align: left;">82982,88</td>
 <td style="text-align: left;">Koulumatkatuki</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">2824,4788</td>
-<td style="text-align: left;">74</td>
-<td style="text-align: left;">209011,43</td>
-<td style="text-align: left;">Kuntoutus</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
@@ -1929,19 +1949,19 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2016</td>
-<td style="text-align: left;">2739,4833</td>
-<td style="text-align: left;">215</td>
-<td style="text-align: left;">588988,91</td>
-<td style="text-align: left;">Sairauspäivärahat</td>
+<td style="text-align: left;">2734,0300</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">10936,12</td>
+<td style="text-align: left;">Sotilasavustus</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
 <td style="text-align: left;">2016</td>
-<td style="text-align: left;">2734,0300</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">10936,12</td>
-<td style="text-align: left;">Sotilasavustus</td>
+<td style="text-align: left;">2739,4833</td>
+<td style="text-align: left;">215</td>
+<td style="text-align: left;">588988,91</td>
+<td style="text-align: left;">Sairauspäivärahat</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
@@ -2111,8 +2131,8 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">2017</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">10000,00</td>
-<td style="text-align: left;">Perhevapaakorvaus</td>
+<td style="text-align: left;">169205,44</td>
+<td style="text-align: left;">Opintotuki</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
@@ -2120,8 +2140,8 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">2017</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">169205,44</td>
-<td style="text-align: left;">Opintotuki</td>
+<td style="text-align: left;">10000,00</td>
+<td style="text-align: left;">Perhevapaakorvaus</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
