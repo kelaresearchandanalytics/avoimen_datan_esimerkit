@@ -26,14 +26,14 @@ issueihin. Pull requesteja otetaan mielellään vastaan!
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">2019-02-19</td>
+<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat'>Yleisen asumistuen saajat</a></td>
+<td style="text-align: left;"><a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_R.md'>R</a>/<a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_python.ipynb'>Python</a></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2019-03-19</td>
 <td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet'>Suomen eläkkeensaajat ja keskimääräiset eläkkeet</a></td>
 <td style="text-align: left;"><a href='2019-03-19-suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet/esimerkki_R.md'>R</a>/<a href='2019-03-19-suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet/esimerkki_python.ipynb'>Python</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2019-03-15</td>
-<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/terveyspuntarin-sairastavuusindeksi'>Terveyspuntarin sairastavuusindeksi</a></td>
-<td style="text-align: left;"><a href='2019-03-15-terveyspuntarin-sairastavuusindeksi/esimerkki_R.md'>R</a>/<a href='2019-03-15-terveyspuntarin-sairastavuusindeksi/esimerkki_python.ipynb'>Python</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2019-03-15</td>
@@ -56,11 +56,6 @@ issueihin. Pull requesteja otetaan mielellään vastaan!
 <td style="text-align: left;"><a href='2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet/esimerkki_R.md'>R</a>/<a href='2019-02-27-lastenhoidon-tukien-saajat-ja-maksetut-tuet/esimerkki_python.ipynb'>Python</a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2019-02-19</td>
-<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-yleisen-asumistuen-saajat'>Yleisen asumistuen saajat</a></td>
-<td style="text-align: left;"><a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_R.md'>R</a>/<a href='2019-02-19-kelan-yleisen-asumistuen-saajat/esimerkki_python.ipynb'>Python</a></td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">2019-02-19</td>
 <td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/kelan-etuudet-ja-saajat'>Kelan etuuksien saajat ja maksetut etuudet</a></td>
 <td style="text-align: left;"><a href='2019-02-19-kelan-etuudet-ja-saajat/esimerkki_R.md'>R</a>/<a href='2019-02-19-kelan-etuudet-ja-saajat/esimerkki_python.ipynb'>Python</a></td>
