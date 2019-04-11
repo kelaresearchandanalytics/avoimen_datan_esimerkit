@@ -78,7 +78,7 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(vuosi == 2018,
+  filter(aika == 2018,
          etuus == "Lapsilisä") %>% 
   arrange(desc(maksetut_etuudet_euroa)) %>% 
   slice(1:20) %>% 
@@ -112,7 +112,7 @@ df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2016,
+  filter(aika == 2016,
          etuus == "Lapsilisä")
 
 ggplot(df2, 
