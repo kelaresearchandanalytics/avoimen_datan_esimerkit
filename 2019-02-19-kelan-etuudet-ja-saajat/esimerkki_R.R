@@ -10,7 +10,7 @@
 #' 
 #' 
 #+ include = FALSE, eval = FALSE
-#rmarkdown::render(input = "./2019-02-19-kelan-etuudet-ja-saajat/esimerkki_R.R", output_file = "./esimerkki_R.md")
+# rmarkdown::render(input = "./2019-02-19-kelan-etuudet-ja-saajat/esimerkki_R.R", output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -88,7 +88,7 @@ dat %>%
   coord_flip() + 
   theme_minimal() +
   geom_text(aes(y = 0), hjust = 0, color = "white") +
-  labs(title = "Esimerkkikuvion esimerkkiotsikko")
+  labs(title = "Esimerkkikuvio")
 
 
 #' 

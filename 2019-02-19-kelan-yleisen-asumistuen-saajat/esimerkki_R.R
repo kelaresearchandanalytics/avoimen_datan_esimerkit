@@ -79,12 +79,9 @@ head(dat) %>% kable(format = "markdown")
 #+ kuva1
 # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
 dat_plot <- dat %>% 
-  filter(vuosi == 2018,
-        asunnon_rahoitusmuoto == "Yhteensä",
-        asunnon_hallintamuoto == "Yhteensä",
-        ruokakunnan_elamantilanne == "Yhteensä",
-        jaettu_asunto == "Yhteensä",
-        Ruokakuntatyyppi == "Yhteensä"
+  filter(aikajakso == "vuosi",
+         aika == "2015 (31.12.)",
+         ruokakuntatyyppi == "Yhteensä"
          ) %>% 
   arrange(desc(asumistuki_keskim_euroa_kk)) %>% 
   slice(1:20)
@@ -121,12 +118,9 @@ df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2018,
-         asunnon_rahoitusmuoto == "Yhteensä",
-         asunnon_hallintamuoto == "Yhteensä",
-         ruokakunnan_elamantilanne == "Yhteensä",
-         jaettu_asunto == "Yhteensä",
-         Ruokakuntatyyppi == "Yhteensä"
+  filter(aikajakso == "vuosi",
+         aika == "2015 (31.12.)",
+         ruokakuntatyyppi == "Yhteensä"
   )
 
 ggplot(df2, 

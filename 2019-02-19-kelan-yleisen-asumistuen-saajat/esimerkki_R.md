@@ -79,71 +79,56 @@ ja sama ruokakunta voi tilastoitua kahteen eri elämäntilanneluokkaan.
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">vuosi</td>
-<td style="text-align: left;">integer</td>
-<td style="text-align: left;">default</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ruokakuntatyyppi</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">default</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">asunnon_rahoitusmuoto</td>
+<td style="text-align: left;">aikajakso</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">asunnon_hallintamuoto</td>
+<td style="text-align: left;">aika</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ruokakunnan_elamantilanne</td>
+<td style="text-align: left;">ruokakuntatyyppi</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">jaettu_asunto</td>
-<td style="text-align: left;">string</td>
-<td style="text-align: left;">default</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">saajaruokakunnat</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">asumistuki_keskim_euroa_kk</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">asumismenot_keskim_euroa_kk</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">asumistukitulo_keskim_euroa_kk</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">asumismenot_ennen_asumistukea_pros</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">asumismenot_asumistuen_jalkeen_pros</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">asumismenot_keskim_e_m2_kk</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">asunnon_keskim_pintaala_m2_asunto</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
@@ -157,33 +142,27 @@ ja sama ruokakunta voi tilastoitua kahteen eri elämäntilanneluokkaan.
 
 <table>
 <colgroup>
-<col style="width: 3%" />
-<col style="width: 2%" />
-<col style="width: 1%" />
 <col style="width: 4%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 7%" />
+<col style="width: 3%" />
 <col style="width: 3%" />
 <col style="width: 4%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 8%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
 <col style="width: 9%" />
 <col style="width: 9%" />
-<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
 <col style="width: 9%" />
+<col style="width: 11%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;">kuntanumero</th>
 <th style="text-align: left;">kunta</th>
-<th style="text-align: right;">vuosi</th>
-<th style="text-align: left;">Ruokakuntatyyppi</th>
-<th style="text-align: left;">asunnon_rahoitusmuoto</th>
-<th style="text-align: left;">asunnon_hallintamuoto</th>
-<th style="text-align: left;">ruokakunnan_elamantilanne</th>
-<th style="text-align: left;">jaettu_asunto</th>
+<th style="text-align: left;">aikajakso</th>
+<th style="text-align: left;">aika</th>
+<th style="text-align: left;">ruokakuntatyyppi</th>
 <th style="text-align: right;">saajaruokakunnat</th>
 <th style="text-align: right;">asumistuki_keskim_euroa_kk</th>
 <th style="text-align: right;">asumismenot_keskim_euroa_kk</th>
@@ -198,110 +177,92 @@ ja sama ruokakunta voi tilastoitua kahteen eri elämäntilanneluokkaan.
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Alajärvi</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2007 (31.12.)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">203</td>
-<td style="text-align: right;">304.9144</td>
-<td style="text-align: right;">508.8600</td>
-<td style="text-align: right;">1118.8457</td>
-<td style="text-align: right;">45.481</td>
-<td style="text-align: right;">18.228</td>
-<td style="text-align: right;">6.6834</td>
-<td style="text-align: right;">76.138</td>
+<td style="text-align: right;">131</td>
+<td style="text-align: right;">204.65</td>
+<td style="text-align: right;">401.81</td>
+<td style="text-align: right;">789.32</td>
+<td style="text-align: right;">50.9</td>
+<td style="text-align: right;">25.0</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">74.1</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">9</td>
 <td style="text-align: left;">Alavieska</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2007 (31.12.)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">63</td>
-<td style="text-align: right;">269.1949</td>
-<td style="text-align: right;">465.6644</td>
-<td style="text-align: right;">1151.4160</td>
-<td style="text-align: right;">40.443</td>
-<td style="text-align: right;">17.063</td>
-<td style="text-align: right;">7.2419</td>
-<td style="text-align: right;">64.302</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">168.84</td>
+<td style="text-align: right;">389.82</td>
+<td style="text-align: right;">826.00</td>
+<td style="text-align: right;">47.2</td>
+<td style="text-align: right;">26.8</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">65.8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">10</td>
 <td style="text-align: left;">Alavus</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2007 (31.12.)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">348</td>
-<td style="text-align: right;">288.8393</td>
-<td style="text-align: right;">495.9399</td>
-<td style="text-align: right;">1080.7823</td>
-<td style="text-align: right;">45.887</td>
-<td style="text-align: right;">19.162</td>
-<td style="text-align: right;">7.2128</td>
-<td style="text-align: right;">68.759</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: right;">203.18</td>
+<td style="text-align: right;">407.83</td>
+<td style="text-align: right;">799.71</td>
+<td style="text-align: right;">51.0</td>
+<td style="text-align: right;">25.6</td>
+<td style="text-align: right;">6.2</td>
+<td style="text-align: right;">66.0</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">16</td>
 <td style="text-align: left;">Asikkala</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2007 (31.12.)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">248</td>
-<td style="text-align: right;">265.6627</td>
-<td style="text-align: right;">514.9967</td>
-<td style="text-align: right;">954.1861</td>
-<td style="text-align: right;">53.972</td>
-<td style="text-align: right;">26.131</td>
-<td style="text-align: right;">8.3488</td>
-<td style="text-align: right;">61.685</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">210.84</td>
+<td style="text-align: right;">399.29</td>
+<td style="text-align: right;">699.76</td>
+<td style="text-align: right;">57.1</td>
+<td style="text-align: right;">26.9</td>
+<td style="text-align: right;">6.7</td>
+<td style="text-align: right;">59.5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">18</td>
 <td style="text-align: left;">Askola</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2007 (31.12.)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">82</td>
-<td style="text-align: right;">306.8317</td>
-<td style="text-align: right;">656.0295</td>
-<td style="text-align: right;">1321.9330</td>
-<td style="text-align: right;">49.627</td>
-<td style="text-align: right;">26.416</td>
-<td style="text-align: right;">8.3055</td>
-<td style="text-align: right;">78.988</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">205.24</td>
+<td style="text-align: right;">406.06</td>
+<td style="text-align: right;">671.67</td>
+<td style="text-align: right;">60.5</td>
+<td style="text-align: right;">29.9</td>
+<td style="text-align: right;">5.5</td>
+<td style="text-align: right;">73.6</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">19</td>
 <td style="text-align: left;">Aura</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2007 (31.12.)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">110</td>
-<td style="text-align: right;">280.3020</td>
-<td style="text-align: right;">534.1155</td>
-<td style="text-align: right;">997.9341</td>
-<td style="text-align: right;">53.522</td>
-<td style="text-align: right;">25.434</td>
-<td style="text-align: right;">7.9979</td>
-<td style="text-align: right;">66.782</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">229.26</td>
+<td style="text-align: right;">460.31</td>
+<td style="text-align: right;">764.94</td>
+<td style="text-align: right;">60.2</td>
+<td style="text-align: right;">30.2</td>
+<td style="text-align: right;">7.4</td>
+<td style="text-align: right;">62.5</td>
 </tr>
 </tbody>
 </table>
@@ -311,12 +272,9 @@ Kuvio
 
     # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
     dat_plot <- dat %>% 
-      filter(vuosi == 2018,
-            asunnon_rahoitusmuoto == "Yhteensä",
-            asunnon_hallintamuoto == "Yhteensä",
-            ruokakunnan_elamantilanne == "Yhteensä",
-            jaettu_asunto == "Yhteensä",
-            Ruokakuntatyyppi == "Yhteensä"
+      filter(aikajakso == "vuosi",
+             aika == "2015 (31.12.)",
+             ruokakuntatyyppi == "Yhteensä"
              ) %>% 
       arrange(desc(asumistuki_keskim_euroa_kk)) %>% 
       slice(1:20)
@@ -354,12 +312,9 @@ Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
 
     # Piirretään hajontakuvio
     df2 <- df %>% 
-      filter(vuosi == 2018,
-             asunnon_rahoitusmuoto == "Yhteensä",
-             asunnon_hallintamuoto == "Yhteensä",
-             ruokakunnan_elamantilanne == "Yhteensä",
-             jaettu_asunto == "Yhteensä",
-             Ruokakuntatyyppi == "Yhteensä"
+      filter(aikajakso == "vuosi",
+             aika == "2015 (31.12.)",
+             ruokakuntatyyppi == "Yhteensä"
       )
 
     ggplot(df2, 
@@ -428,6 +383,24 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Muut</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Yhteensä</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">439,4826</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -445,7 +418,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">274,7210</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">350,3112</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -463,7 +436,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">203,9958</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -481,7 +454,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">608,5755</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -499,7 +472,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">428,7482</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -517,7 +490,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">549,8144</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -533,24 +506,6 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">13,123</td>
 <td style="text-align: left;">-Yhden huoltajan perheet</td>
 <td style="text-align: left;">376,0311</td>
-<td style="text-align: left;">Yhteensä</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Muut</td>
-<td style="text-align: left;">NA</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
 <tr class="even">
@@ -597,24 +552,6 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lapsettomat parit</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yhteensä</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">NA</td>
 <td style="text-align: left;">2017</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
@@ -625,7 +562,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">583,4906</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -643,7 +580,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">342,4228</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">716,1500</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -661,7 +598,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">433,9167</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">517,1608</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -679,7 +616,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">296,6758</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -697,7 +634,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">423,4747</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -715,7 +652,7 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">233,2491</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">334,7079</td>
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">Yhteensä</td>
@@ -731,6 +668,24 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <td style="text-align: left;">18,686</td>
 <td style="text-align: left;">Yksin asuvat</td>
 <td style="text-align: left;">195,6126</td>
+<td style="text-align: left;">Yhteensä</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Lapsettomat parit</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">Yhteensä</td>
 </tr>
 <tr class="even">
