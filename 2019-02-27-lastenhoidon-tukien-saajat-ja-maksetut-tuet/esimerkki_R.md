@@ -61,75 +61,78 @@ hoitoraha ja joustava hoitoraha.
 <th style="text-align: left;">name</th>
 <th style="text-align: left;">type</th>
 <th style="text-align: left;">format</th>
-<th style="text-align: left;">title</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">kuntanumero</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">kunta</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aikajakso</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">aika</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">tukien_sisalto</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">tukimuoto</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">sukupuoli</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">saajat</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">lapset</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">maksetut_etuudet_euroa</td>
-<td style="text-align: left;">number</td>
-<td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">maksetut_etuudet_euroa</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">tuki_per_saaja_e_kk</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">tuki_per_lapsi_e_kk</td>
 <td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">hoitomaksu_per_saaja_e_kk</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">hoitomaksu_per_lapsi_e_kk</td>
 <td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
-<td style="text-align: left;">kuvaus</td>
 </tr>
 </tbody>
 </table>
@@ -140,24 +143,30 @@ hoitoraha ja joustava hoitoraha.
 
 <table>
 <colgroup>
+<col style="width: 5%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 2%" />
+<col style="width: 9%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
 <col style="width: 3%" />
 <col style="width: 3%" />
-<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
 <col style="width: 12%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
 <col style="width: 12%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: right;">kuntanumero</th>
 <th style="text-align: left;">kunta</th>
-<th style="text-align: right;">vuosi</th>
+<th style="text-align: left;">aikajakso</th>
+<th style="text-align: right;">aika</th>
 <th style="text-align: left;">tukien_sisalto</th>
 <th style="text-align: left;">tukimuoto</th>
+<th style="text-align: left;">sukupuoli</th>
 <th style="text-align: right;">saajat</th>
 <th style="text-align: right;">lapset</th>
 <th style="text-align: right;">maksetut_etuudet_euroa</th>
@@ -169,82 +178,100 @@ hoitoraha ja joustava hoitoraha.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">2018</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2007</td>
 <td style="text-align: left;">Lakisääteiset tuet</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">355</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">472</td>
+<td style="text-align: right;">697876</td>
+<td style="text-align: right;">339.01</td>
+<td style="text-align: right;">202.55</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: left;">Lakisääteiset tuet</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">26416</td>
+<td style="text-align: right;">345.00</td>
+<td style="text-align: right;">258.75</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: left;">Lakisääteiset tuet</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: right;">250</td>
 <td style="text-align: right;">462</td>
-<td style="text-align: right;">805236.55</td>
-<td style="text-align: right;">312.1573</td>
-<td style="text-align: right;">251.4208</td>
-<td style="text-align: right;">489.5714</td>
-<td style="text-align: right;">428.3750</td>
+<td style="text-align: right;">671459</td>
+<td style="text-align: right;">338.88</td>
+<td style="text-align: right;">201.58</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">Kotihoidon tuki</td>
-<td style="text-align: right;">264</td>
-<td style="text-align: right;">365</td>
-<td style="text-align: right;">686767.42</td>
-<td style="text-align: right;">401.0870</td>
-<td style="text-align: right;">297.5806</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">Yksityisen hoidon tuki</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">26</td>
-<td style="text-align: right;">31247.01</td>
-<td style="text-align: right;">189.7857</td>
-<td style="text-align: right;">166.0625</td>
-<td style="text-align: right;">489.5714</td>
-<td style="text-align: right;">428.3750</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">Osittainen hoitoraha</td>
-<td style="text-align: right;">56</td>
-<td style="text-align: right;">57</td>
-<td style="text-align: right;">33290.33</td>
-<td style="text-align: right;">96.9032</td>
-<td style="text-align: right;">96.9032</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">2018</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">Joustava hoitoraha</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: right;">53931.79</td>
-<td style="text-align: right;">188.9500</td>
-<td style="text-align: right;">188.9500</td>
-<td style="text-align: right;">0.0000</td>
-<td style="text-align: right;">0.0000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Akaa</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Alavieska</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2007</td>
 <td style="text-align: left;">Lakisääteiset tuet</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: right;">396</td>
-<td style="text-align: right;">513</td>
-<td style="text-align: right;">924225.26</td>
-<td style="text-align: right;">338.6630</td>
-<td style="text-align: right;">258.5643</td>
-<td style="text-align: right;">511.0000</td>
-<td style="text-align: right;">397.4444</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">144</td>
+<td style="text-align: right;">185966</td>
+<td style="text-align: right;">336.63</td>
+<td style="text-align: right;">180.94</td>
+<td style="text-align: right;">350.75</td>
+<td style="text-align: right;">350.75</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Alavieska</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: left;">Lakisääteiset tuet</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5771</td>
+<td style="text-align: right;">360.00</td>
+<td style="text-align: right;">360.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Alavieska</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: left;">Lakisääteiset tuet</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">137</td>
+<td style="text-align: right;">180195</td>
+<td style="text-align: right;">336.07</td>
+<td style="text-align: right;">178.67</td>
+<td style="text-align: right;">350.75</td>
+<td style="text-align: right;">350.75</td>
 </tr>
 </tbody>
 </table>
@@ -253,8 +280,11 @@ Kuvio
 -----
 
     dat %>% 
-      filter(vuosi == 2018,
-             tukimuoto == "Kotihoidon tuki") %>% 
+      filter(aikajakso == "vuosi",
+             aika == "2018",
+             tukimuoto == "Kotihoidon tuki",
+             tukien_sisalto == "Lakisääteiset tuet",
+             sukupuoli == "Yhteensä") %>% 
       arrange(desc(tuki_per_saaja_e_kk)) %>% 
       slice(1:20) %>% 
       mutate(kunta = forcats::fct_reorder(kunta, tuki_per_saaja_e_kk)) %>% 
@@ -286,8 +316,11 @@ Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
     df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
     # Piirretään hajontakuvio
     df2 <- df %>% 
-      filter(vuosi == 2018,
-             tukimuoto == "Kotihoidon tuki")
+      filter(aikajakso == "vuosi",
+             aika == "2018",
+             tukimuoto == "Kotihoidon tuki",
+             tukien_sisalto == "Lakisääteiset tuet",
+             sukupuoli == "Yhteensä")
 
     ggplot(df2, aes(x = `Alkutuotannon työpaikkojen osuus, %, 2016`, 
                     y = tuki_per_saaja_e_kk, 
@@ -313,31 +346,31 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
       select(-`_full_text`, -`_id`) %>% 
       kable(format = "markdown")
 
-<table>
+<table style="width:100%;">
 <colgroup>
+<col style="width: 4%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 15%" />
+<col style="width: 6%" />
+<col style="width: 16%" />
+<col style="width: 4%" />
 <col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 12%" />
-<col style="width: 3%" />
-<col style="width: 14%" />
-<col style="width: 10%" />
-<col style="width: 14%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
-<col style="width: 12%" />
-<col style="width: 3%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 4%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">kunta</th>
+<th style="text-align: left;">kuntanumero</th>
+<th style="text-align: left;">sukupuoli</th>
+<th style="text-align: left;">lapsilisat_euroa_lapsi</th>
+<th style="text-align: left;">aikajakso</th>
+<th style="text-align: left;">perhetyyppi</th>
 <th style="text-align: left;">saajat</th>
-<th style="text-align: left;">tukimuoto</th>
-<th style="text-align: left;">vuosi</th>
-<th style="text-align: left;">hoitomaksu_per_lapsi_e_kk</th>
-<th style="text-align: left;">tukien_sisalto</th>
-<th style="text-align: left;">hoitomaksu_per_saaja_e_kk</th>
-<th style="text-align: left;">tuki_per_lapsi_e_kk</th>
-<th style="text-align: left;">tuki_per_saaja_e_kk</th>
+<th style="text-align: left;">aika</th>
+<th style="text-align: left;">lapsilisat_euroa_perhe</th>
 <th style="text-align: left;">maksetut_etuudet_euroa</th>
 <th style="text-align: left;">lapset</th>
 </tr>
@@ -345,380 +378,1173 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">56</td>
+<td style="text-align: left;">924</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">390,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">390,0000</td>
-<td style="text-align: left;">224,5000</td>
-<td style="text-align: left;">374,1667</td>
-<td style="text-align: left;">150534,92</td>
-<td style="text-align: left;">95</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">47</td>
-<td style="text-align: left;">Kotihoidon tuki</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">227,0698</td>
-<td style="text-align: left;">443,8182</td>
-<td style="text-align: left;">139619,70</td>
-<td style="text-align: left;">87</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yksityisen hoidon tuki</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">Osittainen hoitoraha</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">121,0000</td>
-<td style="text-align: left;">96,8000</td>
-<td style="text-align: left;">5274,69</td>
-<td style="text-align: left;">7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">Joustava hoitoraha</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">201,0000</td>
-<td style="text-align: left;">201,0000</td>
-<td style="text-align: left;">4434,78</td>
-<td style="text-align: left;">4</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">65</td>
+<td style="text-align: left;">1258,81</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">248,9189</td>
-<td style="text-align: left;">383,7500</td>
-<td style="text-align: left;">155272,37</td>
-<td style="text-align: left;">103</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">54</td>
-<td style="text-align: left;">Kotihoidon tuki</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">262,3529</td>
-<td style="text-align: left;">424,7619</td>
-<td style="text-align: left;">142743,52</td>
-<td style="text-align: left;">93</td>
+<td style="text-align: left;">362</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2385,12</td>
+<td style="text-align: left;">362</td>
+<td style="text-align: left;">685</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yksityisen hoidon tuki</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">Osittainen hoitoraha</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">97,0000</td>
-<td style="text-align: left;">97,0000</td>
-<td style="text-align: left;">4976,03</td>
-<td style="text-align: left;">5</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">Joustava hoitoraha</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">4909,89</td>
-<td style="text-align: left;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">64</td>
+<td style="text-align: left;">924</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">350,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">700,0000</td>
-<td style="text-align: left;">239,4576</td>
-<td style="text-align: left;">381,8378</td>
-<td style="text-align: left;">200385,10</td>
-<td style="text-align: left;">118</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">58</td>
-<td style="text-align: left;">Kotihoidon tuki</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">244,3846</td>
-<td style="text-align: left;">409,9355</td>
-<td style="text-align: left;">181036,46</td>
-<td style="text-align: left;">111</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yksityisen hoidon tuki</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Osittainen hoitoraha</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">Joustava hoitoraha</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">182,5000</td>
-<td style="text-align: left;">182,5000</td>
-<td style="text-align: left;">12402,20</td>
-<td style="text-align: left;">10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">71</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">225,8448</td>
-<td style="text-align: left;">374,2571</td>
-<td style="text-align: left;">177698,44</td>
-<td style="text-align: left;">131</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">61</td>
-<td style="text-align: left;">Kotihoidon tuki</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">230,2600</td>
-<td style="text-align: left;">411,1786</td>
-<td style="text-align: left;">159095,34</td>
-<td style="text-align: left;">121</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yksityisen hoidon tuki</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">Osittainen hoitoraha</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">98,0000</td>
-<td style="text-align: left;">98,0000</td>
-<td style="text-align: left;">2944,66</td>
-<td style="text-align: left;">7</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">Joustava hoitoraha</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">189,8333</td>
-<td style="text-align: left;">189,8333</td>
-<td style="text-align: left;">11473,32</td>
-<td style="text-align: left;">9</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">80</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">231,5714</td>
-<td style="text-align: left;">385,9524</td>
-<td style="text-align: left;">215483,56</td>
-<td style="text-align: left;">139</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">1427,01</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">39</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2634,48</td>
+<td style="text-align: left;">39</td>
 <td style="text-align: left;">72</td>
-<td style="text-align: left;">Kotihoidon tuki</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">233,6563</td>
-<td style="text-align: left;">404,1622</td>
-<td style="text-align: left;">204291,25</td>
-<td style="text-align: left;">131</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1205,54</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">333</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2283,98</td>
+<td style="text-align: left;">333</td>
+<td style="text-align: left;">630</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1388,14</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2429,25</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1477,83</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2955,67</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yksityisen hoidon tuki</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1256,11</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">354</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2384,12</td>
+<td style="text-align: left;">354</td>
+<td style="text-align: left;">671</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1416,84</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2576,08</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1206,67</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">331</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">2292,67</td>
+<td style="text-align: left;">331</td>
+<td style="text-align: left;">628</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1274,02</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">361</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2410,40</td>
+<td style="text-align: left;">361</td>
+<td style="text-align: left;">683</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1516,58</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">38</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2713,87</td>
+<td style="text-align: left;">38</td>
+<td style="text-align: left;">68</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1215,57</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">333</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2303,38</td>
+<td style="text-align: left;">333</td>
+<td style="text-align: left;">631</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1216,03</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">1989,87</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1393,26</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2438,20</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">340,43</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">595,75</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1267,96</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">350</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2423,62</td>
+<td style="text-align: left;">350</td>
+<td style="text-align: left;">669</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1548,55</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2787,39</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1217,59</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">329</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">2324,15</td>
+<td style="text-align: left;">329</td>
+<td style="text-align: left;">628</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1308,52</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">354</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2517,24</td>
+<td style="text-align: left;">354</td>
+<td style="text-align: left;">681</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1460,62</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2665,64</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1241,26</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">327</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2399,02</td>
+<td style="text-align: left;">327</td>
+<td style="text-align: left;">632</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1432,11</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2148,16</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1520,16</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2280,24</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1076,57</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">1507,20</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1303,20</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">342</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2530,19</td>
+<td style="text-align: left;">342</td>
+<td style="text-align: left;">664</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1448,91</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2761,98</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">61</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1243,11</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">322</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">2412,86</td>
+<td style="text-align: left;">322</td>
+<td style="text-align: left;">625</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1310,90</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">344</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2557,02</td>
+<td style="text-align: left;">344</td>
+<td style="text-align: left;">671</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1616,10</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">36</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2828,17</td>
+<td style="text-align: left;">36</td>
+<td style="text-align: left;">63</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1256,55</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">315</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2469,21</td>
+<td style="text-align: left;">315</td>
+<td style="text-align: left;">619</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1371,61</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2057,41</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1437,21</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2155,81</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1240,40</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">1860,60</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1307,23</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">332</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2575,08</td>
+<td style="text-align: left;">332</td>
+<td style="text-align: left;">654</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1626,30</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">3020,27</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1256,70</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">311</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">2477,04</td>
+<td style="text-align: left;">311</td>
+<td style="text-align: left;">613</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1350,69</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">327</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2709,65</td>
+<td style="text-align: left;">327</td>
+<td style="text-align: left;">656</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1719,80</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2933,78</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">59</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1295,40</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">299</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2629,78</td>
+<td style="text-align: left;">299</td>
+<td style="text-align: left;">607</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1675,27</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2931,72</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1791,78</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2687,68</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1343,61</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">319</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2704,08</td>
+<td style="text-align: left;">319</td>
+<td style="text-align: left;">642</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1706,58</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2986,52</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1293,98</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">297</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">2622,82</td>
+<td style="text-align: left;">297</td>
+<td style="text-align: left;">602</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1354,85</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">316</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">2739,71</td>
+<td style="text-align: left;">316</td>
+<td style="text-align: left;">639</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1782,60</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">3175,25</td>
+<td style="text-align: left;">33</td>
+<td style="text-align: left;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1288,60</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">291</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">2625,91</td>
+<td style="text-align: left;">291</td>
+<td style="text-align: left;">593</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1493,65</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">2821,34</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1554,75</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">2487,60</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1439,34</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">3238,52</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1351,05</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">307</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">2737,32</td>
+<td style="text-align: left;">307</td>
+<td style="text-align: left;">622</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1819,80</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">3302,60</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1286,28</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">287</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">2617,37</td>
+<td style="text-align: left;">287</td>
+<td style="text-align: left;">584</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1379,37</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">313</td>
 <td style="text-align: left;">2014</td>
+<td style="text-align: left;">2824,84</td>
+<td style="text-align: left;">313</td>
+<td style="text-align: left;">641</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1789,18</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2964,93</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">58</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1318,25</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">283</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2757,60</td>
+<td style="text-align: left;">283</td>
+<td style="text-align: left;">592</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1446,36</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2290,07</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1688,93</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2111,17</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1176,84</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2647,88</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1372,91</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">301</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2846,16</td>
+<td style="text-align: left;">301</td>
+<td style="text-align: left;">624</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1737,67</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">27</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">3217,90</td>
+<td style="text-align: left;">27</td>
+<td style="text-align: left;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1320,43</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">279</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">2759,18</td>
+<td style="text-align: left;">279</td>
+<td style="text-align: left;">583</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1285,80</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">310</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2629,67</td>
+<td style="text-align: left;">310</td>
+<td style="text-align: left;">634</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1546,74</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">36</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2577,90</td>
+<td style="text-align: left;">36</td>
+<td style="text-align: left;">60</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1224,40</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">282</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2561,68</td>
+<td style="text-align: left;">282</td>
+<td style="text-align: left;">590</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1402,27</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2373,07</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1389,75</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">1806,67</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
 <td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2015</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">Osittainen hoitoraha</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">98,0000</td>
-<td style="text-align: left;">98,0000</td>
-<td style="text-align: left;">2512,07</td>
-<td style="text-align: left;">5</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1273,29</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">297</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2640,90</td>
+<td style="text-align: left;">297</td>
+<td style="text-align: left;">616</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">Joustava hoitoraha</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">Lakisääteiset tuet</td>
-<td style="text-align: left;">0,0000</td>
-<td style="text-align: left;">202,5000</td>
-<td style="text-align: left;">202,5000</td>
-<td style="text-align: left;">6554,89</td>
-<td style="text-align: left;">8</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1590,17</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2874,53</td>
+<td style="text-align: left;">26</td>
+<td style="text-align: left;">47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1221,36</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">279</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">2543,41</td>
+<td style="text-align: left;">279</td>
+<td style="text-align: left;">581</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1273,46</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">304</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2618,13</td>
+<td style="text-align: left;">304</td>
+<td style="text-align: left;">625</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1470,36</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2536,36</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1220,49</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">270</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2581,62</td>
+<td style="text-align: left;">270</td>
+<td style="text-align: left;">569</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1308,93</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2372,43</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1520,86</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2212,16</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1048,09</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2725,04</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1263,25</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">288</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2631,78</td>
+<td style="text-align: left;">288</td>
+<td style="text-align: left;">600</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1455,11</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2659,34</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">53</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1224,52</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">264</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">2578,91</td>
+<td style="text-align: left;">264</td>
+<td style="text-align: left;">556</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1278,70</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">293</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2745,05</td>
+<td style="text-align: left;">293</td>
+<td style="text-align: left;">629</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1493,12</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2748,70</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">81</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">1209,48</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">254</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2690,38</td>
+<td style="text-align: left;">254</td>
+<td style="text-align: left;">565</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1384,44</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2249,71</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">1571,27</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2296,47</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Miehet</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1263,66</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">277</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2773,67</td>
+<td style="text-align: left;">277</td>
+<td style="text-align: left;">608</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1469,17</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Yhden vanhemman perheet</td>
+<td style="text-align: left;">31</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2938,35</td>
+<td style="text-align: left;">31</td>
+<td style="text-align: left;">62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">Naiset</td>
+<td style="text-align: left;">1207,16</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">Kahden vanhemman perheet</td>
+<td style="text-align: left;">251</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">2698,07</td>
+<td style="text-align: left;">251</td>
+<td style="text-align: left;">561</td>
 </tr>
 </tbody>
 </table>

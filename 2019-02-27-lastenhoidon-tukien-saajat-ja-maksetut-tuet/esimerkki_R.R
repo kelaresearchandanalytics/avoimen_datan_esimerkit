@@ -76,8 +76,11 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(vuosi == 2018,
-         tukimuoto == "Kotihoidon tuki") %>% 
+  filter(aikajakso == "vuosi",
+         aika == "2018",
+         tukimuoto == "Kotihoidon tuki",
+         tukien_sisalto == "Lakisääteiset tuet",
+         sukupuoli == "Yhteensä") %>% 
   arrange(desc(tuki_per_saaja_e_kk)) %>% 
   slice(1:20) %>% 
   mutate(kunta = forcats::fct_reorder(kunta, tuki_per_saaja_e_kk)) %>% 
@@ -108,8 +111,11 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2018,
-         tukimuoto == "Kotihoidon tuki")
+  filter(aikajakso == "vuosi",
+         aika == "2018",
+         tukimuoto == "Kotihoidon tuki",
+         tukien_sisalto == "Lakisääteiset tuet",
+         sukupuoli == "Yhteensä")
 
 ggplot(df2, aes(x = `Alkutuotannon työpaikkojen osuus, %, 2016`, 
                 y = tuki_per_saaja_e_kk, 

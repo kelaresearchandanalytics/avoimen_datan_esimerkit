@@ -79,13 +79,17 @@ head(dat) %>% kable(format = "markdown")
 #+ kuva1
 # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
 dat %>% 
-  filter(vuosi == 2018) %>% 
+  filter(aikajakso == "vuosi",
+         aika == 2018,
+         perhetyyppi == "Yhteensä",
+         sukupuoli == "Yhteensä") %>% 
   arrange(desc(lapsilisat_euroa_perhe)) %>% 
   slice(1:10) %>% pull(kunta) -> kunnat
 
 # Piirretään kuva
 dat %>% 
-  filter(kunta %in% kunnat) %>% 
+  filter(kunta %in% kunnat,
+         perhetyyppi == "Yhteensä") %>% 
   ggplot(aes(x = reorder(kunta, lapsilisat_euroa_perhe), 
              y = lapsilisat_euroa_perhe, 
              label = round(lapsilisat_euroa_perhe))) + 
@@ -114,7 +118,10 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2018) 
+  filter(aikajakso == "vuosi",
+         aika == 2018,
+         perhetyyppi == "Yhteensä",
+         sukupuoli == "Yhteensä")
 
 ggplot(df2, aes(x = `Väkiluvun muutos edellisestä vuodesta, %, 2017`, 
                 y = lapsilisat_euroa_perhe, 
