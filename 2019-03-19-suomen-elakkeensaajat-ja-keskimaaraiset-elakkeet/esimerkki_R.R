@@ -78,7 +78,8 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(vuosi == 2017,
+  filter(aikajakso == "vuosi", 
+         aika == "2017-12",
          elakelaji == "Yhteensä",
          sukupuoli == "Yhteensä",
          ikaryhma == "Yhteensä",
@@ -115,7 +116,8 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2017,
+  filter(aikajakso == "vuosi", 
+         aika == "2017-12",
          elakelaji == "Yhteensä",
          sukupuoli == "Yhteensä",
          ikaryhma == "Yhteensä",

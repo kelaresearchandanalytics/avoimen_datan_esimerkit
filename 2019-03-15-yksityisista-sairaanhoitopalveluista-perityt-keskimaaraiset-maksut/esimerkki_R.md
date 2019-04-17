@@ -87,18 +87,23 @@ laskemista.
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">aikajakso</td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aika</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">toimenpide</td>
 <td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">vuosi</td>
-<td style="text-align: left;">integer</td>
-<td style="text-align: left;">default</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">hinta_euroa</td>
-<td style="text-align: left;">number</td>
+<td style="text-align: left;">integer</td>
 <td style="text-align: left;">default</td>
 </tr>
 </tbody>
@@ -113,8 +118,9 @@ laskemista.
 <tr class="header">
 <th style="text-align: right;">kuntanumero</th>
 <th style="text-align: left;">kunta</th>
+<th style="text-align: left;">aikajakso</th>
+<th style="text-align: right;">aika</th>
 <th style="text-align: left;">toimenpide</th>
-<th style="text-align: right;">vuosi</th>
 <th style="text-align: right;">hinta_euroa</th>
 </tr>
 </thead>
@@ -122,44 +128,50 @@ laskemista.
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Alajärvi</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2010</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-<td style="text-align: right;">2018</td>
-<td style="text-align: right;">59.24</td>
+<td style="text-align: right;">42</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Alavieska</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2010</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-<td style="text-align: right;">2017</td>
-<td style="text-align: right;">58.66</td>
+<td style="text-align: right;">50</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Alavus</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2010</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-<td style="text-align: right;">2016</td>
-<td style="text-align: right;">56.30</td>
+<td style="text-align: right;">46</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">Asikkala</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2010</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-<td style="text-align: right;">2015</td>
-<td style="text-align: right;">54.84</td>
+<td style="text-align: right;">49</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">Askola</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2010</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-<td style="text-align: right;">2014</td>
-<td style="text-align: right;">52.07</td>
+<td style="text-align: right;">43</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">Alajärvi</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">Aura</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: right;">2010</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">52.62</td>
+<td style="text-align: right;">51</td>
 </tr>
 </tbody>
 </table>
@@ -168,7 +180,9 @@ Kuvio
 -----
 
     dat %>% 
-      filter(vuosi == 2018) %>% 
+      filter(aikajakso == "vuosi",
+             aika == "2018",
+             toimenpide == "SAA02 Hammaslääkärit, perustutkimus") %>% 
       arrange(desc(hinta_euroa)) %>% 
       slice(1:20) %>% 
       mutate(kunta = forcats::fct_reorder(kunta, hinta_euroa)) %>% 
@@ -200,13 +214,15 @@ Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
     df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
     # Piirretään hajontakuvio
     df2 <- df %>% 
-      filter(vuosi == 2018) 
+      filter(aikajakso == "vuosi",
+             aika == "2018",
+             toimenpide == "SAA02 Hammaslääkärit, perustutkimus") 
 
     ggplot(df2, aes(x = `Sosiaali- ja terveystoiminta yhteensä, nettokäyttökustannukset, euroa/asukas, 2017`, 
                     y = hinta_euroa, 
                     size = `Väkiluku, 2017`)) + 
       geom_point(alpha = .3) +
-      labs(y = "Yleislääkärin vastaanoton keskihinta") + 
+      labs(y = "SAA02 Hammaslääkärit, perustutkimus keskihinta") + 
       theme_light()
 
 ![](esimerkki_R_files/figure-markdown_strict/join-1.png)
@@ -227,12 +243,21 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
       kable(format = "markdown")
 
 <table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 8%" />
+<col style="width: 4%" />
+<col style="width: 61%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">kunta</th>
 <th style="text-align: left;">kuntanumero</th>
-<th style="text-align: left;">vuosi</th>
 <th style="text-align: left;">hinta_euroa</th>
+<th style="text-align: left;">aikajakso</th>
+<th style="text-align: left;">aika</th>
 <th style="text-align: left;">toimenpide</th>
 </tr>
 </thead>
@@ -240,65 +265,714 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
 <td style="text-align: left;">924</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">69,10</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">61,67</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">54,93</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">53,63</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">48,69</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2013</td>
-<td style="text-align: left;">49,33</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2012</td>
-<td style="text-align: left;">46,16</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">2011</td>
-<td style="text-align: left;">43,60</td>
-<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">2010</td>
-<td style="text-align: left;">44,22</td>
 <td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">75</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">59</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">61</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">44</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">75</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">82</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">77</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">64</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">46</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">77</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">87</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">79</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">64</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">86</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">58</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">65</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">80</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">92</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">82</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">68</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">91</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">61</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">67</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">81</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">94</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">86</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">82</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">94</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">65</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">83</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">97</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">91</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">78</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">83</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">110</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">71</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">96</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">103</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">78</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">86</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">94</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">64</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">62</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">95</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">99</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">116</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">81</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">165</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">102</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">79</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">74</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">69</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Yleislääkärit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">102</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Iho- ja sukupuolitaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">97</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Kirurgia (ortopedia ja traumatologia), vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">107</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Korva-, nenä-ja kurkkutaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">89</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Lastentaudit, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">94</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Naistentaudit ja synnytykset, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">163</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Psykiatria, vastaanottokäynti enintään 60 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">98</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Sisätaudit, vastaanottokäynti enintään 30 min.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">86</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">Yleislääketiede, vastaanottokäynti enintään 20 min.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">924</td>
+<td style="text-align: left;">76</td>
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">SAA02 Hammaslääkärit, perustutkimus</td>
 </tr>
 </tbody>
 </table>

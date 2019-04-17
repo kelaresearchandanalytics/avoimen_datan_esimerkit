@@ -77,8 +77,10 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(vuosi == 2018,
-         etuus == "Opintoraha") %>% 
+  filter(aikajakso == "vuosi",
+         aika == "2018",
+         etuus == "Opintoraha",
+         oppilaitosaste == "Yhteensä") %>% 
   arrange(desc(maksetut_etuudet_euroa)) %>% 
   slice(1:20) %>% 
   mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
@@ -109,8 +111,10 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2018,
-         etuus == "Opintoraha")
+  filter(aikajakso == "vuosi",
+         aika == "2018",
+         etuus == "Opintoraha",
+         oppilaitosaste == "Yhteensä")
 
 ggplot(df2, aes(x = `Korkea-asteen tutkinnon suorittaneiden osuus 15 vuotta täyttäneistä, %, 2017`, 
                 y = euroa_per_saaja, 

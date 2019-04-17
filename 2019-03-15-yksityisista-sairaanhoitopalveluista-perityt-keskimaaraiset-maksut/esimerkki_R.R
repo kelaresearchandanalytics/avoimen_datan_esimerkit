@@ -79,7 +79,9 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(vuosi == 2018) %>% 
+  filter(aikajakso == "vuosi",
+         aika == "2018",
+         toimenpide == "SAA02 Hammaslääkärit, perustutkimus") %>% 
   arrange(desc(hinta_euroa)) %>% 
   slice(1:20) %>% 
   mutate(kunta = forcats::fct_reorder(kunta, hinta_euroa)) %>% 
@@ -110,13 +112,15 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(vuosi == 2018) 
+  filter(aikajakso == "vuosi",
+         aika == "2018",
+         toimenpide == "SAA02 Hammaslääkärit, perustutkimus") 
 
 ggplot(df2, aes(x = `Sosiaali- ja terveystoiminta yhteensä, nettokäyttökustannukset, euroa/asukas, 2017`, 
                 y = hinta_euroa, 
                 size = `Väkiluku, 2017`)) + 
   geom_point(alpha = .3) +
-  labs(y = "Yleislääkärin vastaanoton keskihinta") + 
+  labs(y = "SAA02 Hammaslääkärit, perustutkimus keskihinta") + 
   theme_light()
 
 #' ## Datastore-api
