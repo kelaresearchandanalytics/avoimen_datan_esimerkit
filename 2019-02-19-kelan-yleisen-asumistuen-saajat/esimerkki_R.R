@@ -56,7 +56,7 @@ ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen")
 resources <- x$results[[1]]$resources
 
-dat <- readr::read_csv2(resources[[1]]$url) # data
+dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # metadata
 
 #' # Resurssien kuvailu
@@ -68,7 +68,9 @@ meta$description %>% cat()
 
 #' **Datan muuttujatieto**
 #+ print_metadata
-meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
+meta$resources$schema$fields[[1]] %>%
+  select(-values) %>% 
+  kable(format = "markdown")
 
 #' **Datan ensimmäiset rivit**
 #+ print_data
@@ -80,7 +82,7 @@ head(dat) %>% kable(format = "markdown")
 # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
 dat_plot <- dat %>% 
   filter(aikajakso == "vuosi",
-         aika == "2015 (31.12.)",
+         vuosi == "2015",
          ruokakuntatyyppi == "Yhteensä"
          ) %>% 
   arrange(desc(asumistuki_keskim_euroa_kk)) %>% 
@@ -119,7 +121,7 @@ df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
   filter(aikajakso == "vuosi",
-         aika == "2015 (31.12.)",
+         vuosi == "2015",
          ruokakuntatyyppi == "Yhteensä"
   )
 

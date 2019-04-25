@@ -9,8 +9,9 @@
 #' 
 #' 
 #' 
+#' 
 #+ include = FALSE, eval = FALSE
-# rmarkdown::render(input = "./2019-03-19-suomen-elakkeensaajat-ja-keskimaaraiset-elakkeet/esimerkki_R.R", output_file = "./esimerkki_R.md")
+# rmarkdown::render(input = "./2019-04-23-suomen-tyottomyysturvaetuuksien-saajat-ja-maksetut-etuudet/esimerkki_R.R", output_file = "./esimerkki_R.md")
 
 #+ knitr_setup, include=F
 library(knitr)
@@ -29,7 +30,7 @@ library(dplyr)
 library(knitr)
 library(glue)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:eläkkeensaajat")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:työttömyysturvaetuuksien")
 tibble(
   data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
   julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
@@ -45,16 +46,14 @@ library(ckanr)
 library(readr)
 library(knitr)
 library(glue)
-library(pxweb)
 library(tidyr)
-
-
+library(pxweb)
 
 #' ## Resurssien lataaminen
 #' 
 #+ setup
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
-x <- package_search(q = "Kansaneläkelaitos", fq = "title:eläkkeensaajat")
+x <- package_search(q = "Kansaneläkelaitos", fq = "title:työttömyysturvaetuuksien")
 resources <- x$results[[1]]$resources
 dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
@@ -80,23 +79,20 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(aikajakso == "vuosi", 
-         vuosi == "2017",
-         elakelaji == "Yhteensä",
-         sukupuoli == "Yhteensä",
-         ikaryhma == "Yhteensä",
-         elakejarjestelma == "Kaikki eläkkeen saajat",
-         asuinmaa == "Suomi") %>% 
-  arrange(desc(keskimaarainen_kokonaiselake_e_kk)) %>% 
+  filter(aikajakso == "vuosi",
+         vuosi == "2018",
+         etuuslaji == "Ansiopäiväraha",
+         korvausperuste == "Yhteensä",
+         sukupuoli == "Yhteensä")  %>% 
+  arrange(desc(euroa_paiva)) %>% 
   slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, keskimaarainen_kokonaiselake_e_kk)) %>% 
-  ggplot(aes(x = kunta, y = keskimaarainen_kokonaiselake_e_kk, label = keskimaarainen_kokonaiselake_e_kk)) + 
+  mutate(kunta = forcats::fct_reorder(kunta, euroa_paiva)) %>% 
+  ggplot(aes(x = kunta, y = euroa_paiva, label = euroa_paiva)) + 
   geom_col() + 
   coord_flip() + 
   theme_minimal() +
   geom_text(aes(y = 0), hjust = 0, color = "white") +
   labs(title = "Esimerkkikuvion esimerkkiotsikko")
-
 
 #' 
 #' ## Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
@@ -118,19 +114,17 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(aikajakso == "vuosi", 
-         vuosi == "2017",
-         elakelaji == "Yhteensä",
-         sukupuoli == "Yhteensä",
-         ikaryhma == "Yhteensä",
-         elakejarjestelma == "Kaikki eläkkeen saajat",
-         asuinmaa == "Suomi")
+  filter(aikajakso == "vuosi",
+         vuosi == "2018",
+         etuuslaji == "Ansiopäiväraha",
+         korvausperuste == "Yhteensä",
+         sukupuoli == "Yhteensä")
 
-ggplot(df2, aes(x = `Yli 64-vuotiaiden osuus väestöstä, %, 2017`, 
-                y = keskimaarainen_kokonaiselake_e_kk, 
+ggplot(df2, aes(x = `Korkea-asteen tutkinnon suorittaneiden osuus 15 vuotta täyttäneistä, %, 2017`, 
+                y = euroa_paiva, 
                 size = `Väkiluku, 2017`)) + 
   geom_point(alpha = .3) +
-  labs(y = "keskimaarainen_kokonaiselake_e_kk") + 
+  labs(y = "Ansiopäiväraha, euroa per päivä") + 
   theme_light()
 
 

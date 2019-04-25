@@ -56,7 +56,7 @@ ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:lapsilisän saajat")
 resources <- x$results[[1]]$resources
 
-dat <- readr::read_csv2(resources[[1]]$url) # data
+dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # metadata
 
 #' # Resurssien kuvailu
@@ -68,7 +68,9 @@ meta$description %>% cat()
 
 #' **Datan muuttujatieto**
 #+ print_metadata
-meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
+meta$resources$schema$fields[[1]] %>%
+  select(-values) %>% 
+  kable(format = "markdown")
 
 #' **Datan ensimmäiset rivit**
 #+ print_data
@@ -80,7 +82,7 @@ head(dat) %>% kable(format = "markdown")
 # valitaan ensin top 10 kuntaa, joissa korkeimmat keskimääräiset asumistukimenot
 dat %>% 
   filter(aikajakso == "vuosi",
-         aika == 2018,
+         vuosi == 2018,
          perhetyyppi == "Yhteensä",
          sukupuoli == "Yhteensä") %>% 
   arrange(desc(lapsilisat_euroa_perhe)) %>% 
@@ -89,7 +91,9 @@ dat %>%
 # Piirretään kuva
 dat %>% 
   filter(kunta %in% kunnat,
-         perhetyyppi == "Yhteensä") %>% 
+         vuosi == 2018,
+         perhetyyppi == "Yhteensä",
+         sukupuoli == "Yhteensä") %>% 
   ggplot(aes(x = reorder(kunta, lapsilisat_euroa_perhe), 
              y = lapsilisat_euroa_perhe, 
              label = round(lapsilisat_euroa_perhe))) + 
@@ -118,10 +122,10 @@ tk_avainluvut <- as.data.frame(tk_lst, column.name.type = "text", variable.value
 df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(aikajakso == "vuosi",
-         aika == 2018,
+  filter(kunta %in% kunnat,
+         vuosi == 2018,
          perhetyyppi == "Yhteensä",
-         sukupuoli == "Yhteensä")
+         sukupuoli == "Yhteensä") 
 
 ggplot(df2, aes(x = `Väkiluvun muutos edellisestä vuodesta, %, 2017`, 
                 y = lapsilisat_euroa_perhe, 

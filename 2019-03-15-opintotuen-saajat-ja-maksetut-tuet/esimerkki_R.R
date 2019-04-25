@@ -55,7 +55,7 @@ library(pxweb)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:opintotuen")
 resources <- x$results[[1]]$resources
-dat <- read_csv2(resources[[1]]$url) # Lataa data
+dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
 
 #' ## Datan ja metadatan kuvailu
@@ -66,7 +66,9 @@ meta$description %>% cat()
 
 #' **Datan muuttujatieto**
 #+ print_metadata
-meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
+meta$resources$schema$fields[[1]] %>%
+  select(-values) %>% 
+  kable(format = "markdown")
 
 #' **Datan ensimmäiset rivit**
 #+ print_data
@@ -78,13 +80,13 @@ head(dat)  %>% kable(format = "markdown")
 #+ kuva1
 dat %>% 
   filter(aikajakso == "vuosi",
-         aika == "2018",
+         vuosi == "2018",
          etuus == "Opintoraha",
          oppilaitosaste == "Yhteensä") %>% 
-  arrange(desc(maksetut_etuudet_euroa)) %>% 
+  arrange(desc(euroa_per_saaja)) %>% 
   slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
-  ggplot(aes(x = kunta, y = maksetut_etuudet_euroa, label = maksetut_etuudet_euroa)) + 
+  mutate(kunta = forcats::fct_reorder(kunta, euroa_per_saaja)) %>% 
+  ggplot(aes(x = kunta, y = euroa_per_saaja, label = euroa_per_saaja)) + 
   geom_col() + 
   coord_flip() + 
   theme_minimal() +
@@ -112,7 +114,7 @@ df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
   filter(aikajakso == "vuosi",
-         aika == "2018",
+         vuosi == "2018",
          etuus == "Opintoraha",
          oppilaitosaste == "Yhteensä")
 

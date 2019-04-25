@@ -57,7 +57,7 @@ library(pxweb)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:yksityisistä sairaanhoito")
 resources <- x$results[[1]]$resources
-dat <- read_csv2(resources[[1]]$url) # Lataa data
+dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
 
 #' ## Datan ja metadatan kuvailu
@@ -68,7 +68,9 @@ meta$description %>% cat()
 
 #' **Datan muuttujatieto**
 #+ print_metadata
-meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
+meta$resources$schema$fields[[1]] %>%
+  select(-values) %>% 
+  kable(format = "markdown")
 
 #' **Datan ensimmäiset rivit**
 #+ print_data
@@ -80,7 +82,7 @@ head(dat)  %>% kable(format = "markdown")
 #+ kuva1
 dat %>% 
   filter(aikajakso == "vuosi",
-         aika == "2018",
+         vuosi == "2018",
          toimenpide == "SAA02 Hammaslääkärit, perustutkimus") %>% 
   arrange(desc(hinta_euroa)) %>% 
   slice(1:20) %>% 
@@ -91,6 +93,7 @@ dat %>%
   theme_minimal() +
   geom_text(aes(y = 0), hjust = 0, color = "white") +
   labs(title = "Esimerkkikuvion esimerkkiotsikko")
+
 
 #' 
 #' ## Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
@@ -113,7 +116,7 @@ df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 # Piirretään hajontakuvio
 df2 <- df %>% 
   filter(aikajakso == "vuosi",
-         aika == "2018",
+         vuosi == "2018",
          toimenpide == "SAA02 Hammaslääkärit, perustutkimus") 
 
 ggplot(df2, aes(x = `Sosiaali- ja terveystoiminta yhteensä, nettokäyttökustannukset, euroa/asukas, 2017`, 

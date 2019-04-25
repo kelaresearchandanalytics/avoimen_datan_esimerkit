@@ -56,7 +56,7 @@ library(pxweb)
 ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:etuuksien")
 resources <- x$results[[1]]$resources
-dat <- read_csv2(resources[[1]]$url) # Lataa data
+dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
 meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
 
 #' ## Datan ja metadatan kuvailu
@@ -67,7 +67,9 @@ meta$description %>% cat()
 
 #' **Datan muuttujatieto**
 #+ print_metadata
-meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
+meta$resources$schema$fields[[1]] %>%
+  select(-values) %>% 
+  kable(format = "markdown")
 
 #' **Datan ensimmäiset rivit**
 #+ print_data
@@ -78,12 +80,14 @@ head(dat)  %>% kable(format = "markdown")
 #' 
 #+ kuva1
 dat %>% 
-  filter(aika == 2018,
+  as_tibble() %>% 
+  filter(aikajakso == "vuosi",
+         vuosi == 2018,
          etuus == "Lapsilisä") %>% 
-  arrange(desc(maksetut_etuudet_euroa)) %>% 
+  arrange(desc(euroa_per_saaja)) %>% 
   slice(1:20) %>% 
-  mutate(kunta = forcats::fct_reorder(kunta, maksetut_etuudet_euroa)) %>% 
-  ggplot(aes(x = kunta, y = maksetut_etuudet_euroa, label = maksetut_etuudet_euroa)) + 
+  mutate(kunta = forcats::fct_reorder(kunta, euroa_per_saaja)) %>% 
+  ggplot(aes(x = kunta, y = euroa_per_saaja, label = euroa_per_saaja)) + 
   geom_col() + 
   coord_flip() + 
   theme_minimal() +
@@ -112,7 +116,8 @@ df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
 
 # Piirretään hajontakuvio
 df2 <- df %>% 
-  filter(aika == 2016,
+  filter(aikajakso == "vuosi",
+         vuosi == 2018,
          etuus == "Lapsilisä")
 
 ggplot(df2, 
@@ -131,7 +136,7 @@ ggplot(df2,
 #' Alla olevassa esimerkissä tehdään rajaus `kunta`-muuttujasta ja siis etsitään vaan kuntaa *Veteli* koskevat tiedot.
 #+
 kunta <- "Veteli"
-res <- ckanr::ds_search_sql(sql = glue("SELECT * from \"{resources[[1]]$id}\" WHERE kunta LIKE '{kunta}'"), as = "table")
+res <- ckanr::ds_search_sql(sql = glue("SELECT * from \"{resources[[1]]$id}\" WHERE kunta = '{kunta}'"), as = "table")
 res$records %>% 
   select(-`_full_text`, -`_id`) %>% 
   kable(format = "markdown")
