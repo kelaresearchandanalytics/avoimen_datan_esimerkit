@@ -31,7 +31,7 @@ Resurssien lataaminen
     ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
     x <- package_search(q = "Kansaneläkelaitos", fq = "title:eläkkeensaajat")
     resources <- x$results[[1]]$resources
-    dat <- read_csv2(resources[[1]]$url) # Lataa data
+    dat <- read.table(resources[[1]]$url, header = TRUE, sep = ";", dec = ",", stringsAsFactors = FALSE) # Lataa data
     meta <- fromJSON(txt = resources[[2]]$url) # Lataa metadata
 
 Datan ja metadatan kuvailu
@@ -63,7 +63,9 @@ vuoteen 2007 saakka eläkkeensaajien asumistuesta ja hoitotuesta.
 
 **Datan muuttujatieto**
 
-    meta$resources$schema$fields[[1]] %>% kable(format = "markdown")
+    meta$resources$schema$fields[[1]] %>%
+      select(-values) %>% 
+      kable(format = "markdown")
 
 <table>
 <thead>
@@ -85,8 +87,8 @@ vuoteen 2007 saakka eläkkeensaajien asumistuesta ja hoitotuesta.
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">vuosi</td>
-<td style="text-align: left;">integer</td>
+<td style="text-align: left;">aikajakso</td>
+<td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
@@ -116,12 +118,22 @@ vuoteen 2007 saakka eläkkeensaajien asumistuesta ja hoitotuesta.
 </tr>
 <tr class="odd">
 <td style="text-align: left;">saajat</td>
-<td style="text-align: left;">integer</td>
+<td style="text-align: left;">number</td>
 <td style="text-align: left;">default</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">keskimaarainen_kokonaiselake_e_kk</td>
 <td style="text-align: left;">number</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">vuosi</td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: left;">default</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">kuukausi</td>
+<td style="text-align: left;">string</td>
 <td style="text-align: left;">default</td>
 </tr>
 </tbody>
@@ -131,24 +143,26 @@ vuoteen 2007 saakka eläkkeensaajien asumistuesta ja hoitotuesta.
 
     head(dat)  %>% kable(format = "markdown")
 
-<table>
+<table style="width:100%;">
 <colgroup>
-<col style="width: 9%" />
-<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 15%" />
+<col style="width: 6%" />
 <col style="width: 4%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
+<col style="width: 22%" />
+<col style="width: 4%" />
 <col style="width: 6%" />
-<col style="width: 17%" />
-<col style="width: 6%" />
-<col style="width: 5%" />
-<col style="width: 26%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;">kuntanumero</th>
 <th style="text-align: left;">kunta</th>
-<th style="text-align: right;">vuosi</th>
+<th style="text-align: left;">aikajakso</th>
 <th style="text-align: left;">elakelaji</th>
 <th style="text-align: left;">sukupuoli</th>
 <th style="text-align: left;">ikaryhma</th>
@@ -156,80 +170,94 @@ vuoteen 2007 saakka eläkkeensaajien asumistuesta ja hoitotuesta.
 <th style="text-align: left;">asuinmaa</th>
 <th style="text-align: right;">saajat</th>
 <th style="text-align: right;">keskimaarainen_kokonaiselake_e_kk</th>
+<th style="text-align: right;">vuosi</th>
+<th style="text-align: left;">kuukausi</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">Alajärvi</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: right;">3463</td>
-<td style="text-align: right;">1253.347</td>
+<td style="text-align: right;">3177</td>
+<td style="text-align: right;">821.59</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">9</td>
 <td style="text-align: left;">Alavieska</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: right;">812</td>
-<td style="text-align: right;">1263.518</td>
+<td style="text-align: right;">781</td>
+<td style="text-align: right;">816.81</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">10</td>
 <td style="text-align: left;">Alavus</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: right;">4116</td>
-<td style="text-align: right;">1292.210</td>
+<td style="text-align: right;">3823</td>
+<td style="text-align: right;">865.13</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">16</td>
 <td style="text-align: left;">Asikkala</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: right;">3223</td>
-<td style="text-align: right;">1528.110</td>
+<td style="text-align: right;">2580</td>
+<td style="text-align: right;">975.58</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">18</td>
 <td style="text-align: left;">Askola</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: right;">1209</td>
-<td style="text-align: right;">1533.034</td>
+<td style="text-align: right;">964</td>
+<td style="text-align: right;">908.87</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">19</td>
 <td style="text-align: left;">Aura</td>
-<td style="text-align: right;">2017</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Yhteensä</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: right;">966</td>
-<td style="text-align: right;">1454.336</td>
+<td style="text-align: right;">753</td>
+<td style="text-align: right;">925.15</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -238,7 +266,8 @@ Kuvio
 -----
 
     dat %>% 
-      filter(vuosi == 2017,
+      filter(aikajakso == "vuosi", 
+             vuosi == "2017",
              elakelaji == "Yhteensä",
              sukupuoli == "Yhteensä",
              ikaryhma == "Yhteensä",
@@ -275,7 +304,8 @@ Datan yhdistäminen Tilastokeskuksen kuntien avainlukuihin
     df <- left_join(dat, tk_avainluvut, by = c("kunta" = "Alue 2018"))
     # Piirretään hajontakuvio
     df2 <- df %>% 
-      filter(vuosi == 2017,
+      filter(aikajakso == "vuosi", 
+             vuosi == "2017",
              elakelaji == "Yhteensä",
              sukupuoli == "Yhteensä",
              ikaryhma == "Yhteensä",
@@ -309,281 +339,75 @@ etsitään vaan kuntaa *Veteli* koskevat tiedot.
 <table>
 <colgroup>
 <col style="width: 4%" />
+<col style="width: 3%" />
 <col style="width: 7%" />
 <col style="width: 4%" />
-<col style="width: 6%" />
-<col style="width: 3%" />
-<col style="width: 29%" />
+<col style="width: 5%" />
+<col style="width: 5%" />
 <col style="width: 5%" />
 <col style="width: 20%" />
+<col style="width: 5%" />
+<col style="width: 19%" />
 <col style="width: 5%" />
 <col style="width: 13%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">kunta</th>
+<th style="text-align: left;">vuosi</th>
 <th style="text-align: left;">kuntanumero</th>
 <th style="text-align: left;">saajat</th>
 <th style="text-align: left;">sukupuoli</th>
-<th style="text-align: left;">vuosi</th>
+<th style="text-align: left;">asuinmaa</th>
+<th style="text-align: left;">kuukausi</th>
 <th style="text-align: left;">elakelaji</th>
 <th style="text-align: left;">ikaryhma</th>
 <th style="text-align: left;">keskimaarainen_kokonaiselake_e_kk</th>
-<th style="text-align: left;">asuinmaa</th>
+<th style="text-align: left;">aikajakso</th>
 <th style="text-align: left;">elakejarjestelma</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">2003</td>
 <td style="text-align: left;">924</td>
-<td style="text-align: left;">1155</td>
+<td style="text-align: left;">1066</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1261,4278</td>
 <td style="text-align: left;">Suomi</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">Yhteensä</td>
+<td style="text-align: left;">842,04</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">2003</td>
 <td style="text-align: left;">924</td>
-<td style="text-align: left;">1127</td>
+<td style="text-align: left;">1029</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
+<td style="text-align: left;">Suomi</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: left;">Omaeläkkeet (kaikki)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1282,2545</td>
-<td style="text-align: left;">Suomi</td>
+<td style="text-align: left;">857,68</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Veteli</td>
+<td style="text-align: left;">2003</td>
 <td style="text-align: left;">924</td>
-<td style="text-align: left;">1118</td>
+<td style="text-align: left;">1019</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">-Omaeläkkeet (pl. osa-aikaeläkkeet)</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1287,4961</td>
 <td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">4</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Omaeläkkeet (pl. osa-aikaeläkkeet)</td>
 <td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">-Osa-aikaeläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">662,6075</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">1120</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">-Vanhuus-, työkyvyttömyys- ja työttömyyseläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1284,6775</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">989</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">–Vanhuuseläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1314,4711</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">141</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">–Työkyvyttömyyseläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1063,5766</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">20</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">-Maatalouden erityiseläke</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1160,0215</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">225</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">Perhe-eläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1192,3572</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">215</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">-Leskeneläke</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1231,4514</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">-Lapseneläke</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">351,8320</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">1135</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1240,7380</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">1103</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">Omaeläkkeet (kaikki)</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1265,6481</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">1098</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">-Omaeläkkeet (pl. osa-aikaeläkkeet)</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1268,4329</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">-Osa-aikaeläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">654,1220</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">1094</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">-Vanhuus-, työkyvyttömyys- ja työttömyyseläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1268,8667</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">956</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">–Vanhuuseläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1298,7915</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">150</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">–Työkyvyttömyyseläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1074,2189</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">22</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">-Maatalouden erityiseläke</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1146,4827</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">230</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">Perhe-eläkkeet</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1172,2555</td>
-<td style="text-align: left;">Suomi</td>
-<td style="text-align: left;">Kaikki eläkkeen saajat</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Veteli</td>
-<td style="text-align: left;">924</td>
-<td style="text-align: left;">216</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">-Leskeneläke</td>
-<td style="text-align: left;">Yhteensä</td>
-<td style="text-align: left;">1228,0493</td>
-<td style="text-align: left;">Suomi</td>
+<td style="text-align: left;">861,56</td>
+<td style="text-align: left;">vuosi</td>
 <td style="text-align: left;">Kaikki eläkkeen saajat</td>
 </tr>
 </tbody>
