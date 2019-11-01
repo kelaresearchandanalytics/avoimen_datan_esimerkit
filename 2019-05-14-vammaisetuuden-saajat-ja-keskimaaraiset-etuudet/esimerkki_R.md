@@ -8,7 +8,7 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href='https://beta.avoindata.fi/data/fi/dataset/vammaisetuuden-saajat-ja-keskimaaraiset-etuudet'>Vammaisetuuden saajat ja keskimääräiset etuudet</a></td>
+<td style="text-align: left;"><a href='https://www.betaavoindata.fi/data/fi/dataset/vammaisetuuden-saajat-ja-keskimaaraiset-etuudet'>Vammaisetuuden saajat ja keskimääräiset etuudet</a></td>
 <td style="text-align: left;">2019-11-01</td>
 <td style="text-align: left;"><a href='mailto:markus.kainu@kela.fi'>Markus Kainu</a></td>
 </tr>

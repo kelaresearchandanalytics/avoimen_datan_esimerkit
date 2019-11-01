@@ -32,7 +32,7 @@ library(glue)
 ckanr_setup(url = "https://www.betaavoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:vammais")
 tibble(
-  data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
+  data = glue("<a href='https://www.betaavoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
   julkaistu = substr(x$results[[1]]$metadata_created, start = 1, stop = 10),
   ylläpitäjä = glue("<a href='mailto:{x$results[[1]]$maintainer_email}'>{x$results[[1]]$maintainer}</a>")
 ) %>% 
