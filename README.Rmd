@@ -35,7 +35,7 @@ R-kieliset lähdekoodit ja käännetyt esimerkit `.md`-muodossa löytyvät kunki
 
 
 ```{r, echo = FALSE}
-ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+ckanr_setup(url = "https://www.betaavoindata.fi/data/fi/")
 
 org <- ckanr::organization_show(id = "585d86c0-f642-482c-852a-9cfb6312a5eb", 
                                 include_datasets = TRUE)

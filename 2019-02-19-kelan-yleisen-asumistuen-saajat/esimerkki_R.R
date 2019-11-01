@@ -28,7 +28,7 @@ library(ckanr)
 library(dplyr)
 library(knitr)
 library(glue)
-ckanr_setup(url = "https://beta.avoindata.fi/data/fi/")
+ckanr_setup(url = "https://www.betaavoindata.fi/data/fi/")
 x <- package_search(q = "Kansaneläkelaitos", fq = "title:yleisen asumistuen")
 tibble(
   data = glue("<a href='https://beta.avoindata.fi/data/fi/dataset/{x$results[[1]]$name}'>{x$results[[1]]$title}</a>"),
